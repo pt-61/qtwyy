@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/">
+        <file>search.png</file>
+        <file>sing.png</file>
+        <file>close.png</file>
+        <file>onbig.png</file>
+        <file>hide.png</file>
+        <file>mini.png</file>
+        <file>record.png</file>
+        <file>make.png</file>
+        <file>name.png</file>
+        <file>cs.png</file>
+        <file>spcan.png</file>
+    </qresource>
+</RCC>

@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>Src/Left/Left.qml</file>
+        <file>Src/Right/Right.qml</file>
+        <file>Src/Playmusic/Playmusic.qml</file>
+        <file>Src/Common/Common.qml</file>
+        <file>Src/RightTop/RightTop.qml</file>
+        <file>Src/RightTop/Usersetting.qml</file>
+        <file>Src/RightTop/Search.qml</file>
+        <file>Src/basic/Basic.qml</file>
+        <file>Src/Right/Toptitle.qml</file>
+        <file>Src/Right/StackPages/SelectedPages.qml</file>
+        <file>Src/Right/StackPages/Settings.qml</file>
+        <file>Src/Right/StackPages/Settingitems/Counter.qml</file>
+        <file>Src/Right/StackPages/Settingitems/Common.qml</file>
+    </qresource>
+</RCC>
