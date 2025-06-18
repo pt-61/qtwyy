@@ -11,5 +11,7 @@
         <file>name.png</file>
         <file>cs.png</file>
         <file>spcan.png</file>
+        <file>blackImg.png</file>
+        <file>rightArrow.png</file>
     </qresource>
 </RCC>

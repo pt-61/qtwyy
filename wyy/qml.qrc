@@ -14,5 +14,7 @@
         <file>Src/Right/StackPages/Settings.qml</file>
         <file>Src/Right/StackPages/Settingitems/Counter.qml</file>
         <file>Src/Right/StackPages/Settingitems/Common.qml</file>
+        <file>Src/Right/StackPages/CherryPick/CherryPick.qml</file>
+        <file>Src/Right/StackPages/CherryPick/CherryCarousel.qml</file>
     </qresource>
 </RCC>

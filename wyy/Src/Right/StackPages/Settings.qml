@@ -61,10 +61,10 @@ Item {
                         }
                         onExited: {
                             if(selectedrep.selectedindex===index){
-                                selectlabel.color="white"
+                                selectlabel.color="#a1a1a3"
                             }
                             else{
-                                selectlabel.color="#a1a1a3"
+                                selectlabel.color="white"
                             }
                             cursorShape=Qt.ArrowCursor
                         }
