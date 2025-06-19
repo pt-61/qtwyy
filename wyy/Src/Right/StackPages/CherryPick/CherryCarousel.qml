@@ -18,8 +18,8 @@ Rectangle {
         hoverEnabled: true
         onEntered: {
             flick.incarouselSpace = false
-            leftArrow.visible = false
-            rightArrow.visible = false
+            cherryLArrowImg.visible = false
+            cherryRArrowImg.visible = false
         }
     }
 
@@ -36,14 +36,12 @@ Rectangle {
 
     //左箭头
     Item {
-        id: leftArrow
         height: carouselSpace.height
         width: 25
         anchors {
             right: carouselSpace.left
             verticalCenter: carouselSpace.verticalCenter
         }
-        visible: false
         Behavior on opacity {
             PropertyAnimation{
                 duration: 200
@@ -56,6 +54,7 @@ Rectangle {
             opacity: 0.6
             mirror: true
             source: "/rightArrow.png"
+            visible: false
         }
         //鼠标操作
         MouseArea {
@@ -64,8 +63,8 @@ Rectangle {
             onEntered: {
                 cherryLArrowImg.opacity = 1
                 flick.incarouselSpace = true
-                visible = true
-                rightArrow.visible = true
+                cherryLArrowImg.visible = true
+                cherryRArrowImg.visible = true
                 cursorShape = Qt.PointingHandCursor
             }
             onExited: {
@@ -81,14 +80,12 @@ Rectangle {
     }
     //右箭头
     Item {
-        id: rightArrow
         height: carouselSpace.height
         width: 25
         anchors {
             left: carouselSpace.right
             verticalCenter: carouselSpace.verticalCenter
         }
-        visible: false
         Behavior on opacity {
             PropertyAnimation{
                 duration: 200
@@ -100,6 +97,7 @@ Rectangle {
             anchors.centerIn: parent
             opacity: 0.6
             source: "/rightArrow.png"
+            visible: false
         }
         //鼠标操作
         MouseArea {
@@ -108,8 +106,8 @@ Rectangle {
             onEntered: {
                 cherryRArrowImg.opacity = 1
                 flick.incarouselSpace = true
-                leftArrow.visible = true
-                visible = true
+                cherryLArrowImg.visible = true
+                cherryRArrowImg.visible = true
                 cursorShape = Qt.PointingHandCursor
             }
             onExited: {
@@ -186,8 +184,8 @@ Rectangle {
             hoverEnabled: true
             onEntered: {
                 flick.incarouselSpace = true
-                leftArrow.visible = true
-                rightArrow.visible = true
+                cherryLArrowImg.visible = true
+                cherryRArrowImg.visible = true
             }
         }
 
@@ -232,55 +230,75 @@ Rectangle {
                 width: carouselRow.itemWidth
                 height: carouselSpace.height
                 clip: true
-                Item {
-                    anchors.centerIn: parent
+
+                //图片
+                Image {
+                    id: carouselImg
+                    anchors.fill: parent
+                    source: src
+                    visible: false
+                }
+                //圆角遮罩Rectangle
+                Rectangle {
+                    id: carouselMaskRec
                     width: parent.width
                     height: parent.height
-                    //图片
-                    Image {
-                        id: carouselImg
-                        anchors.fill: parent
-                        source: src
-                        visible: false
-                    }
-                    //圆角遮罩Rectangle
+                    anchors.centerIn: parent
+                    color: "transparent"
                     Rectangle {
-                        id: carouselMaskRec
-                        anchors.centerIn: parent
                         width: parent.width
                         height: parent.height
-                        color: "transparent"
-                        Rectangle {
-                            anchors.centerIn: parent
-                            width: parent.width
-                            height: parent.height
-                            color: "black"
-                            radius: 10
-                        }
-                        visible: false
+                        anchors.centerIn: parent
+                        color: "black"
+                        radius: 10
                     }
-                    //遮罩后的图片
-                    OpacityMask {
-                        anchors.fill: carouselImg
-                        source: carouselImg
-                        maskSource: carouselMaskRec
+                    visible: false
+                }
+                //遮罩后的图片
+                OpacityMask {
+                    anchors.fill: parent
+                    source: carouselImg
+                    maskSource: carouselMaskRec
+                }
+
+                Text {
+
+                }
+
+                //指示提示强调
+                Rectangle {
+                    id: carouselItemRec
+                    width: parent.width
+                    height: parent.height
+                    anchors.centerIn: parent
+                    color: "gray"
+                    radius: 10
+                    opacity: 0.1
+                    Behavior on opacity {
+                        PropertyAnimation {
+                            duration: 200
+                        }
                     }
-                    //鼠标操作
-                    MouseArea {
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onEntered: {
-                            flick.incarouselSpace = true
-                            leftArrow.visible = true
-                            rightArrow.visible = true
-                            cursorShape = Qt.PointingHandCursor
-                        }
-                        onExited: {
-                            cursorShape = Qt.ArrowCursor
-                        }
-                        onClicked: {
-                            //todo
-                        }
+                    visible: false
+                }
+
+                //鼠标操作
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    onEntered: {
+                        flick.incarouselSpace = true
+                        carouselItemRec.visible = true
+                        cherryLArrowImg.visible = true
+                        cherryRArrowImg.visible = true
+                        cursorShape = Qt.PointingHandCursor
+                    }
+                    onExited: {
+                        carouselItemRec.visible = false
+                        cursorShape = Qt.ArrowCursor
+                    }
+                    onClicked: {
+                        //todo
                     }
                 }
             }
@@ -291,73 +309,81 @@ Rectangle {
         id: carouselIndicatorPath
         startX: 0
         startY: carouselIndicator.height / 2
-
         PathAttribute {name: "size"; value: 0}
+        PathAttribute {name: "opacity"; value: 0.4}
 
         PathLine {
-            x: 18
+            x: 13
             y: carouselIndicator.height / 2
         }
-
-        PathAttribute {name: "size"; value: 0}
-
-        PathLine {
-            x: 23
-            y: carouselIndicator.height / 2
-        }
-
         PathAttribute {name: "size"; value: 6}
 
         PathLine {
-            x: carouselIndicator.width / 2
+            x: 30
             y: carouselIndicator.height / 2
         }
+        PathAttribute {name: "size"; value: 8}
+        PathAttribute {name: "opacity"; value: 0.4}
 
+        PathLine {
+            x: 49
+            y: carouselIndicator.height / 2
+        }
         PathAttribute {name: "size"; value: 10}
+        PathAttribute {name: "opacity"; value: 1}
 
         PathLine {
-            x: carouselIndicator.width - 23
+            x: 68
             y: carouselIndicator.height / 2
         }
+        PathAttribute {name: "size"; value: 8}
+        PathAttribute {name: "opacity"; value: 0.4}
 
+        PathLine {
+            x: 85
+            y: carouselIndicator.height / 2
+        }
         PathAttribute {name: "size"; value: 6}
 
         PathLine {
-            x: carouselIndicator.width - 18
+            x: 98
             y: carouselIndicator.height / 2
         }
-
         PathAttribute {name: "size"; value: 0}
-
-        PathLine {
-            x: carouselIndicator.width
-            y: carouselIndicator.height / 2
-        }
-
-        PathAttribute {name: "size"; value: 0}
+        PathAttribute {name: "opacity"; value: 0.4}
     }
 
     //轮播图指示器
     PathView {
         id: carouselIndicator
-        width: 118
+        width: 98
         height: 10
         anchors {
             top: carouselSpace.bottom
             topMargin: 10
             horizontalCenter: carouselSpace.horizontalCenter
         }
+
+        Rectangle {
+            //color: "blue"
+            width: parent.width
+            height: parent.height
+        }
+
         clip: true
-        model: 8
+        model: 6
         path: carouselIndicatorPath
-        pathItemCount: 8
+        pathItemCount: 6
+        //preferredHighlightBegin: 0.5
+        //preferredHighlightEnd: 0.5
         interactive: false
         //委托
         delegate: Rectangle {
             width: PathView.size
             height: width
             radius: height / 2
-            color: "#a1a1a3"
+            color: "black"
+            opacity: PathView.opacity
         }
     }
 }
