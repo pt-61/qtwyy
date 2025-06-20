@@ -1,7 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls
 
- Rectangle{
+Rectangle{
     Toptitle{
         id:righttoptitle
         anchors.left: parent.left
@@ -20,4 +20,4 @@ import QtQuick.Controls
         clip: true
         initialItem: "qrc:/Src/Right/StackPages/SelectedPages.qml"
     }
- }
+}

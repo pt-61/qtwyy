@@ -12,7 +12,7 @@ Rectangle {
         left: parent.left
         right: parent.right
     }
-    //鼠标操作
+    //鼠标穿透
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
@@ -35,7 +35,9 @@ Rectangle {
     }
 
     //左箭头
-    Item {
+    Rectangle {
+        color: "yellow"
+
         height: carouselSpace.height
         width: 25
         anchors {
@@ -54,10 +56,21 @@ Rectangle {
             opacity: 0.6
             mirror: true
             source: "/rightArrow.png"
-            visible: false
+            //visible: false
         }
-        //鼠标操作
-        MouseArea {
+
+        TapHandler {
+            //active: true
+            cursorShape: Qt.PointingHandCursor
+            onTapped: {
+                carouselRAnimation.start()
+                cherryTimer.stop()
+                cherryTimer.start()
+            }
+        }
+
+        //鼠标穿透
+        /*MouseArea {
             anchors.fill: parent
             hoverEnabled: true
             onEntered: {
@@ -76,7 +89,7 @@ Rectangle {
                 cherryTimer.stop()
                 cherryTimer.start()
             }
-        }
+        }*/
     }
     //右箭头
     Item {
@@ -99,7 +112,7 @@ Rectangle {
             source: "/rightArrow.png"
             visible: false
         }
-        //鼠标操作
+        //鼠标穿透
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
@@ -178,7 +191,7 @@ Rectangle {
             horizontalCenter: parent.horizontalCenter
         }
         clip: true
-        //鼠标操作
+        //鼠标穿透
         MouseArea {
             anchors.fill: parent
             hoverEnabled: true
@@ -282,7 +295,7 @@ Rectangle {
                     visible: false
                 }
 
-                //鼠标操作
+                //鼠标穿透
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
@@ -374,8 +387,6 @@ Rectangle {
         model: 6
         path: carouselIndicatorPath
         pathItemCount: 6
-        //preferredHighlightBegin: 0.5
-        //preferredHighlightEnd: 0.5
         interactive: false
         //委托
         delegate: Rectangle {

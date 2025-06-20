@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Controls 2.15
 import "../StackPages/Settingitems"
 Item {
-   Item {
+    Item {
         anchors.fill: parent
         anchors.topMargin:24
         anchors.leftMargin:24
@@ -103,5 +103,5 @@ Item {
                 }
             }
         }
-        }
+    }
 }

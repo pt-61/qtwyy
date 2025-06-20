@@ -1,5 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Window 2.15
+
+
 Window {
     id:window
     width: 1314
@@ -7,7 +9,9 @@ Window {
     visible: true
     //界面边框处理
     flags: Qt.FramelessWindowHint|Qt.Window|Qt.WindowSystemMenuHint|Qt.WindowMaximizeButtonHint|Qt.WindowMinimizeButtonHint
-    title: qsTr("Hello World")
+    title: qsTr("Demo Music Player")
+
+
     MouseArea{
         anchors.fill: parent
         property point currentpoint:"0,0"

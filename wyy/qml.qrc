@@ -16,5 +16,8 @@
         <file>Src/Right/StackPages/Settingitems/Common.qml</file>
         <file>Src/Right/StackPages/CherryPick/CherryPick.qml</file>
         <file>Src/Right/StackPages/CherryPick/CherryCarousel.qml</file>
+        <file>Src/Top/Top.qml</file>
+        <file>Src/Center/Center.qml</file>
+        <file>Src/Right/StackPages/CherryPick/CherryPlayerlist.qml</file>
     </qresource>
 </RCC>

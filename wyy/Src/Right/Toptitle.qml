@@ -19,7 +19,7 @@ Rectangle{
     }
     RightTop{
         id:topright
-       // anchors.left: parent.left
+        // anchors.left: parent.left
         anchors.right: parent.right
         height: 66
         color: "#f7f9fc"
