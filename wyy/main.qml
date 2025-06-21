@@ -1,18 +1,43 @@
-import QtQuick 2.15
+import QtQuick
 import QtQuick.Controls
-import QtQuick.Window 2.15
-import "./Src/Top"
+import QtQuick.Window
 import "./Src/Left"
 import "./Src/Right"
 import "./Src/Playmusic"
 import "./Src/Common"
 
-//总窗口
-Common{
+Window {
     id:window
-    width: 1314
-    height: 933
+    width: 1024//1314
+    height: 670//933
+    visible: true
+    //界面边框处理
+    flags: Qt.FramelessWindowHint|Qt.Window|Qt.WindowSystemMenuHint|Qt.WindowMaximizeButtonHint|Qt.WindowMinimizeButtonHint
+    title: qsTr("Demo Music Player")
 
+    Common {
+        anchors.fill: parent
+    }
+
+    /*MouseArea{
+        anchors.fill: parent
+        property point currentpoint:"0,0"
+        onPressed:function(mouse) {
+            currentpoint=Qt.point(mouse.x,mouse.y)
+        }
+        onPositionChanged:function(mouse){
+            let delta=Qt.point(mouse.x-currentpoint.x,mouse.y-currentpoint.y)
+            window.x+=delta.x
+            window.y+=delta.y
+        }
+    }*/
+}
+
+//总窗口
+/*Common{
+    id:window
+    width: 1024//1314
+    height: 670//933
 
     //左页面设置
     Left{
@@ -196,4 +221,4 @@ Common{
             }
         }
     }
-}
+}*/

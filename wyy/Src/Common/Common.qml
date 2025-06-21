@@ -1,27 +1,45 @@
-import QtQuick 2.15
-import QtQuick.Window 2.15
+import QtQuick
+import QtQuick.Window
+import "./Top"
+import "./Center"
+import "./Bottom"
 
+Rectangle {
+    color: "gray"
 
-Window {
-    id:window
-    width: 1314
-    height: 933
-    visible: true
-    //界面边框处理
-    flags: Qt.FramelessWindowHint|Qt.Window|Qt.WindowSystemMenuHint|Qt.WindowMaximizeButtonHint|Qt.WindowMinimizeButtonHint
-    title: qsTr("Demo Music Player")
-
-
-    MouseArea{
-        anchors.fill: parent
-        property point currentpoint:"0,0"
-        onPressed:function(mouse) {
-            currentpoint=Qt.point(mouse.x,mouse.y)
+    Text {
+        anchors.centerIn: parent
+        text: "Common"
+        font {
+            pixelSize: 24
+            family: "黑体"
+            bold: true
         }
-        onPositionChanged:function(mouse){
-            let delta=Qt.point(mouse.x-currentpoint.x,mouse.y-currentpoint.y)
-            window.x+=delta.x
-            window.y+=delta.y
+    }
+
+    property double commonTop_Height: 50
+    property double commonCenter_Height: height - commonTop_Height - commonBottom_Height
+    property double commonBottom_Height: commonTop_Height
+
+    Column {
+        anchors.fill: parent
+        //顶部布局
+        Top {
+            id: commonTop
+            height: commonTop_Height
+            width: parent.width
+        }
+        //中部布局
+        Center {
+            id: commonCenter
+            height: commonCenter_Height
+            width: parent.width
+        }
+        //底部布局
+        Bottom {
+            id: commonBottom
+            height: commonBottom_Height
+            width: parent.width
         }
     }
 }
