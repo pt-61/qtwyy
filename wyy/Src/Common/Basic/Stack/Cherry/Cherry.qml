@@ -1,5 +1,4 @@
 import QtQuick
-import "./CherrySelector"
 
 Rectangle {
     color: "yellow"

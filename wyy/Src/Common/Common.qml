@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Window
-import "./Top"
-import "./Center"
+import "./Basic"
 import "./Bottom"
 
 Rectangle {
@@ -17,29 +16,21 @@ Rectangle {
         }
     }
 
-    property double commonTop_Height: 50
-    property double commonCenter_Height: height - commonTop_Height - commonBottom_Height
-    property double commonBottom_Height: commonTop_Height
-
+    property double commonBasic_Height: height - commonBottom_Height
+    property double commonBottom_Height: 50
     Column {
         anchors.fill: parent
-        //顶部布局
-        Top {
-            id: commonTop
-            height: commonTop_Height
+        //基础布局
+        Basic {
+            id: commonBasic
             width: parent.width
-        }
-        //中部布局
-        Center {
-            id: commonCenter
-            height: commonCenter_Height
-            width: parent.width
+            height: commonBasic_Height
         }
         //底部布局
         Bottom {
             id: commonBottom
-            height: commonBottom_Height
             width: parent.width
+            height: commonBottom_Height
         }
     }
 }

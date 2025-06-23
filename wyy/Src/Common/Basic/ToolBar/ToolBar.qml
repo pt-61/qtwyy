@@ -1,19 +1,15 @@
 import QtQuick
 
 Rectangle {
-    color: "blue"
+    color: "red"
 
     Text {
         anchors.centerIn: parent
-        text: "TopLeft"
+        text: "ToolBar"
         font {
             pixelSize: 24
             family: "黑体"
             bold: true
         }
-    }
-
-    Row {
-
     }
 }

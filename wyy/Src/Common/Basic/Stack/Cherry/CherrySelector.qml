@@ -39,7 +39,7 @@ Rectangle {
             Repeater {
                 id: cherrySelectorRap
                 anchors.fill: parent
-                model: ["精选", "歌单广场", "排行榜", "歌手"]
+                model: cherrySelectorModel
                 property int selectedIndex: 0
                 Rectangle {
                     color: "white"
@@ -55,7 +55,7 @@ Rectangle {
                             horizontalCenter: parent.horizontalCenter
                         }
 
-                        text: modelData
+                        text: name
                         font {
                             pixelSize: 20
                             family: "黑体"
@@ -82,6 +82,14 @@ Rectangle {
                         cursorShape: Qt.PointingHandCursor
                     }
                 }
+            }
+
+            ListModel {
+                id: cherrySelectorModel
+                ListElement {name: "精选"; link: ""}
+                ListElement {name: "歌单广场"; link: ""}
+                ListElement {name: "排行榜"; link: ""}
+                ListElement {name: "歌手"; link: ""}
             }
         }
     }

@@ -1,21 +1,15 @@
 import QtQuick
-import "./Cherry"
 
 Rectangle {
-    color: "yellow"
+    color: "blue"
 
     Text {
         anchors.centerIn: parent
-        text: "CenterRight"
+        text: "Logo"
         font {
             pixelSize: 24
             family: "黑体"
             bold: true
         }
-    }
-
-    //精选布局
-    Cherry {
-        anchors.fill: parent
     }
 }
