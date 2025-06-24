@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "../StackPages/Settingitems"
+import "./SettingStack"
 Item {
     Item {
         anchors.fill: parent

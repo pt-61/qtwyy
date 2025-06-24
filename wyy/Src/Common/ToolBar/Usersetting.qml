@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-Row{
 
+Row{
     Rectangle{
         height: 30
         width: 140
@@ -36,23 +36,23 @@ Row{
                     }
                 }
             }
-        Text {
-            id: loadstart
-            font.pixelSize: 20
-            text: "未登录"
-            color: "#75777f"
-            anchors.verticalCenter: parent.verticalCenter
-            MouseArea{
-                anchors.fill: parent
-                hoverEnabled:true
-                onEntered: {
+            Text {
+                id: loadstart
+                font.pixelSize: 20
+                text: "未登录"
+                color: "#75777f"
+                anchors.verticalCenter: parent.verticalCenter
+                MouseArea{
+                    anchors.fill: parent
+                    hoverEnabled:true
+                    onEntered: {
 
-                }
-                onClicked: {
-                    loginpopup.open()
+                    }
+                    onClicked: {
+                        loginpopup.open()
+                    }
                 }
             }
-           }
         }
     }
     Item{
@@ -86,52 +86,52 @@ Row{
         }
     }
 
-Image {
-    id: record
-    source: "/record.png"
-    MouseArea{
-        anchors.fill: parent
-        hoverEnabled: true
-        onEntered: {
-            record.opacity=0.5
+    Image {
+        id: record
+        source: "/record.png"
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: {
+                record.opacity=0.5
+            }
+            onExited: {
+                record.opacity=1
+            }
         }
-        onExited: {
-            record.opacity=1
-        }
-    }
-    Behavior on opacity {
-        PropertyAnimation{
-            duration: 100
-        }
-    }
-}
-//设置
-Image {
-    id: make
-    source: "/make.png"
-    MouseArea{
-        anchors.fill: parent
-        hoverEnabled: true
-        onEntered: {
-            make.opacity=0.5
-        }
-        onExited: {
-            make.opacity=1
-        }
-        onClicked: {
-            mainStack.push("qrc:/Src/Right/StackPages/Settings.qml")
+        Behavior on opacity {
+            PropertyAnimation{
+                duration: 100
+            }
         }
     }
-    Behavior on opacity {
-        PropertyAnimation{
-            duration: 100
+    //设置
+    Image {
+        id: make
+        source: "/make.png"
+        MouseArea{
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: {
+                make.opacity=0.5
+            }
+            onExited: {
+                make.opacity=1
+            }
+            onClicked: {
+                mainStack.push("qrc:/Src/Right/StackPages/Settings.qml")
+            }
+        }
+        Behavior on opacity {
+            PropertyAnimation{
+                duration: 100
+            }
         }
     }
-}
-Rectangle{
-    width:1
-    height: 24
-    color: "#e2e5e9"
-    anchors.verticalCenter: parent.verticalCenter
-}
+    Rectangle{
+        width:1
+        height: 24
+        color: "#e2e5e9"
+        anchors.verticalCenter: parent.verticalCenter
+    }
 }
