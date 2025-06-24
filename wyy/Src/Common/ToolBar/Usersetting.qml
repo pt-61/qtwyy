@@ -19,16 +19,18 @@ Row{
                     id:user
                     anchors.verticalCenter: parent.verticalCenter
                     source: "/name.png"
-                    MouseArea{
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onEntered: {
-                           user.opacity=0.5
-                        }
-                        onExited: {
-                            user.opacity=1
+                    HoverHandler{
+                        onHoveredChanged: {
+                            if(hovered){
+                                user.opacity=0.5
+                            }
+                            else{
+                                user.opacity=1
+                            }
                         }
                     }
+
+
                     Behavior on opacity {
                         PropertyAnimation{
                             duration: 100
@@ -42,13 +44,8 @@ Row{
                 text: "未登录"
                 color: "#75777f"
                 anchors.verticalCenter: parent.verticalCenter
-                MouseArea{
-                    anchors.fill: parent
-                    hoverEnabled:true
-                    onEntered: {
-
-                    }
-                    onClicked: {
+                TapHandler{
+                    onTapped: {
                         loginpopup.open()
                     }
                 }
@@ -89,14 +86,14 @@ Row{
     Image {
         id: record
         source: "/record.png"
-        MouseArea{
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: {
-                record.opacity=0.5
-            }
-            onExited: {
-                record.opacity=1
+        HoverHandler{
+            onHoveredChanged: {
+                if(hovered){
+                    record.opacity=0.5
+                }
+                else{
+                    record.opacity=1
+                }
             }
         }
         Behavior on opacity {
@@ -109,19 +106,23 @@ Row{
     Image {
         id: make
         source: "/make.png"
-        MouseArea{
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: {
-                make.opacity=0.5
-            }
-            onExited: {
-                make.opacity=1
-            }
-            onClicked: {
-                mainStack.push("qrc:/Src/Right/StackPages/Settings.qml")
+        HoverHandler{
+            onHoveredChanged: {
+                if(hovered){
+                    make.opacity=0.5
+                }
+                else{
+                    make.opacity=1
+                }
             }
         }
+        TapHandler{
+            onTapped: {
+                mainStack.push("qrc:/Src/Common/Stack/Settings/Settings.qml")
+            }
+        }
+
+
         Behavior on opacity {
             PropertyAnimation{
                 duration: 100

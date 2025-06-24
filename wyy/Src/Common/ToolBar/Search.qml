@@ -48,12 +48,12 @@ Row{
             anchors.leftMargin: 16
             source: "/search.png"
         }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: {
-            searchPop.open()
+        TapHandler{
+            onTapped: {
+                 searchPop.open()
             }
         }
+
     }
 
     Popup{
@@ -74,12 +74,24 @@ Row{
                     anchors.right: parent.right
                     anchors.rightMargin: 5
                     width: 10
-
                 }
 
                 Column{
                     anchors.fill: parent
-                    spacing: 40
+                    spacing: 400
+                    ListModel{
+                        id:historymod
+                        ListElement{singname:"lovestory"}
+                        ListElement{singname:"跳楼机"}
+                        ListElement{singname:"fuck you"}
+                        ListElement{singname:"story"}
+                        ListElement{singname:"楼机"}
+                        ListElement{singname:" you"}
+                        ListElement{singname:"love"}
+                        ListElement{singname:"e"}
+                        ListElement{singname:"fuck "}
+                        ListElement{singname:"eee"}
+                    }
                     Item{
                         id:searchtotal
                         anchors.left: parent.left
@@ -105,9 +117,8 @@ Row{
                                 anchors.right: parent.right
                                 anchors.rightMargin: 30
                                 anchors.verticalCenter: searchname.verticalCenter
-                                MouseArea{
-                                    anchors.fill: parent
-                                    onClicked: {
+                                TapHandler{
+                                    onTapped: {
                                         historymod.clear()
                                     }
                                 }
@@ -143,18 +154,20 @@ Row{
                                         font.pixelSize: 20
                                         font.family: "微软雅黑"
                                     }
-                                    MouseArea{
-                                        anchors.fill: parent
-                                        hoverEnabled: true
-                                        onEntered: {
-                                            dataLabel.color="blue"
-                                            cursorShape=Qt.PointingHandCursor
+                                    HoverHandler{
+                                        onHoveredChanged: {
+                                            if(hovered){
+                                                dataLabel.color="blue"
+                                                cursorShape=Qt.PointingHandCursor
+                                            }else{
+                                                dataLabel.color="#ddd"
+                                                cursorShape=Qt.ArrowCursor
+                                            }
                                         }
-                                        onExited: {
-                                            dataLabel.color="#ddd"
-                                            cursorShape=Qt.ArrowCursor
-                                        }
-                                        onClicked: {
+                                    }
+
+                                    TapHandler{
+                                        onTapped: {
                                             if(historyrep.showall && index===9){
                                                 historyrep.showall=false
                                             }else if(!historyrep.showall&&index===6){
@@ -166,24 +179,12 @@ Row{
                                         }
                                     }
                                 }
-                            }
-                            ListModel{
-                                id:historymod
-                                ListElement{singname:"lovestory"}
-                                ListElement{singname:"跳楼机"}
-                                ListElement{singname:"fuck you"}
-                                ListElement{singname:"story"}
-                                ListElement{singname:"楼机"}
-                                ListElement{singname:" you"}
-                                ListElement{singname:"love"}
-                                ListElement{singname:"e"}
-                                ListElement{singname:"fuck "}
-                                ListElement{singname:"eee"}
+
                             }
                         }
-                    }
                     Item {
                         id: hotsearch
+                        anchors.top: singflow.bottom
                         anchors.left: parent.left
                         anchors.right: parent.right
                         height: searchPop.height-searchtotal.implicitHeight
@@ -260,11 +261,13 @@ Row{
                             }
                         }
                     }
+                    }
                 }
             }
         }
-    }
 
+
+    }
     Rectangle{
         id:songsing
         height: backward.height
@@ -274,16 +277,14 @@ Row{
         border.width: 1
         Image {
             id:sing
-            anchors.centerIn: parent
             source: "/sing.png"
-            MouseArea{
-                anchors.fill: sing
-                hoverEnabled: true
-                onEntered: {
-                    songsing.opacity=0.5
-                }
-                onExited: {
-                    songsing.opacity=1
+            HoverHandler{
+                onHoveredChanged: {
+                    if(hovered){
+                        songsing.opacity=0.5
+                    }else{
+                        songsing.opacity=1
+                    }
                 }
             }
             Behavior on opacity {

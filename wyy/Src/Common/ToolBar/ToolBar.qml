@@ -1,15 +1,22 @@
 import QtQuick
 
 Rectangle {
-    color: "red"
+    color: "white"
 
-    Text {
-        anchors.centerIn: parent
-        text: "ToolBar"
-        font {
-            pixelSize: 24
-            family: "黑体"
-            bold: true
-        }
+    RightTop{
+        id:righttop
+        anchors.right: parent.right
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Usersetting {
+        anchors.right: righttop.left
+        anchors.rightMargin: 200
+        anchors.verticalCenter: parent.verticalCenter
+    }
+
+    Search{
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
     }
 }

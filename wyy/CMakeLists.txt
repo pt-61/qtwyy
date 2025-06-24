@@ -22,6 +22,7 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         MANUAL_FINALIZATION
         ${PROJECT_SOURCES}
         res.qrc
+        songmodel.h songmodel.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET wyy APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -42,7 +43,7 @@ else()
 endif()
 
 target_link_libraries(wyy
-  PRIVATE   Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick  )
+  PRIVATE   Qt${QT_VERSION_MAJOR}::Core Qt${QT_VERSION_MAJOR}::Quick  tag)
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
 # If you are developing for iOS or macOS you should consider setting an

@@ -1,17 +1,23 @@
 import QtQuick
 
 Rectangle {
-    color: "green"
+
+    color: "red"
+
 
     Text {
         anchors.centerIn: parent
         text: "LeftSelectors"
         font {
+
             pixelSize: 20
+
+
             family: "黑体"
             bold: true
         }
     }
+
 
     property double selectorsItem_Width: width - 30
     property double selectorsItem_Height: 40
@@ -50,4 +56,5 @@ Rectangle {
     }
 
 
+ 
 }

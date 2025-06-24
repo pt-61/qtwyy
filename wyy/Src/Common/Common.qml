@@ -20,7 +20,7 @@ Rectangle {
 
     property double topRow_Height: 50                                           //顶部行布局高度
     property double centerRow_Height: height - topRow_Height - bottom_Height    //中部行布局高度
-    property double bottom_Height: 50                                           //底部布局高度
+    property double bottom_Height: 70                                         //底部布局高度
     property double left_Width: 200                                             //左侧宽度
     property double right_Width: width - left_Width                             //右侧宽度
     Column {
@@ -40,6 +40,11 @@ Rectangle {
                 width: right_Width
                 height: parent.height
                 clip: true
+                DragHandler{
+                    onActiveChanged: {
+                        if(active)window.startSystemMove()
+                    }
+                }
             }
         }
         //中部行布局

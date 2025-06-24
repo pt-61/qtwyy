@@ -1,6 +1,7 @@
 import QtQuick
 
 Rectangle{
+    property bool isbig: false
     Row{
         id:rightrow
         spacing: 15
@@ -28,20 +29,21 @@ Rectangle{
                     duration: 200
                 }
             }
-
-            MouseArea{
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: {
-                   hide.opacity=0.5
+            HoverHandler{
+                onHoveredChanged: {
+                    if(hovered){
+                        hide.opacity=0.5
+                    }else{
+                        hide.opacity=1.0
+                    }
                 }
-                onExited: {
-                    hide.opacity=1.0
-                }
-                onClicked: {
-                    window.showMinimized()
             }
-        }
+
+            TapHandler{
+                onTapped: {
+                    window.showMinimized()
+                }
+            }
         }
         //放大
         Image {
@@ -53,20 +55,28 @@ Rectangle{
                     duration: 200
                 }
             }
+            HoverHandler{
+                onHoveredChanged: {
+                    if(hovered){
+                        onbig.opacity=0.5
+                    }
+                    else{
+                        onbig.opacity=1
+                    }
+                }
+            }
+            TapHandler{
+                onTapped: {
+                    if(!isbig){
+                        window.showMaximized()
+                        isbig=true
+                    }
+                    else{
+                        window.showNormal()
+                        isbig=false
+                    }
 
-            MouseArea{
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: {
-                    onbig.opacity=0.5
                 }
-                onExited: {
-                    onbig.opacity=1.0
-                }
-                onClicked:{
-                    window.showFullScreen()
-                }
-
             }
         }
         //关闭
@@ -80,17 +90,19 @@ Rectangle{
                     duration: 200
                 }
             }
+            HoverHandler{
+                onHoveredChanged: {
+                    if(hovered){
+                        onclose.opacity=0.5
+                    }
+                    else{
+                        onclose.opacity=1
+                    }
+                }
+            }
 
-            MouseArea{
-                anchors.fill: parent
-                hoverEnabled: true
-                onEntered: {
-                    onclose.opacity=0.5
-                }
-                onExited: {
-                    onclose.opacity=1.0
-                }
-                onClicked: {
+            TapHandler{
+                onTapped: {
                     Qt.quit()
                 }
             }

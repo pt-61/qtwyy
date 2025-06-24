@@ -33,5 +33,8 @@
         <file>Src/Common/LeftSelectors/OptionRep.qml</file>
         <file>Src/Common/LeftSelectors/SplitLine.qml</file>
         <file>Src/Common/LeftSelectors/PersonalOption.qml</file>
+
+        <file>Src/Common/Bottom/Player.qml</file>
+
     </qresource>
 </RCC>
