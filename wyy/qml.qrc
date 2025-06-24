@@ -29,5 +29,9 @@
         <file>Src/Common/ToolBar/Search.qml</file>
         <file>Src/Common/ToolBar/ToolBar.qml</file>
         <file>Src/Common/ToolBar/Usersetting.qml</file>
+        <file>Src/Common/LeftSelectors/PublicOption.qml</file>
+        <file>Src/Common/LeftSelectors/OptionRep.qml</file>
+        <file>Src/Common/LeftSelectors/SplitLine.qml</file>
+        <file>Src/Common/LeftSelectors/PersonalOption.qml</file>
     </qresource>
 </RCC>

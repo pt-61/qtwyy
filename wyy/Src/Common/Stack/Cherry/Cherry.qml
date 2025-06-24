@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 
 Rectangle {
     color: "yellow"
@@ -13,14 +14,27 @@ Rectangle {
         }
     }
 
-    property double cherryItem_Width: parent.width - 50
+    property double cherryColumn_Width: parent.width - 50
     property double cherrySelector_Height: 40
+    property double cherryStack_Height: height - cherrySelector_Height
     Column {
-        anchors.fill: parent
+        width: cherryColumn_Width
+        anchors {
+            top: parent.top
+            horizontalCenter: parent.horizontalCenter
+        }
         //精选选项
         CherrySelector {
             width: parent.width
             height: cherrySelector_Height
+        }
+        //堆栈
+        StackView {
+            id: cherryStack
+            width: parent.width
+            height: cherryStack_Height
+            clip: true
+            initialItem: ""
         }
     }
 }
