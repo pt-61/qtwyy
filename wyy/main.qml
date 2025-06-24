@@ -19,57 +19,7 @@ Window {
         anchors.fill: parent
     }
 
-    /*MouseArea{
-        anchors.fill: parent
-        property point currentpoint:"0,0"
-        onPressed:function(mouse) {
-            currentpoint=Qt.point(mouse.x,mouse.y)
-        }
-        onPositionChanged:function(mouse){
-            let delta=Qt.point(mouse.x-currentpoint.x,mouse.y-currentpoint.y)
-            window.x+=delta.x
-            window.y+=delta.y
-        }
-    }*/
-}
 
-//总窗口
-/*Common{
-    id:window
-    width: 1024//1314
-    height: 670//933
-
-    //左页面设置
-    Left{
-        id:leftre
-        width: 255
-        anchors.top: parent.top
-        anchors.bottom: bottomre.top
-        color: "#f0f3f6"
-    }
-
-
-    //右页面设置
-    Right{
-        id:rightre
-        anchors.top: parent.top
-        anchors.left: leftre.right
-        anchors.right: parent.right
-        anchors.bottom: bottomre.top
-        color:"#f7f9fc"
-
-    }
-
-    //底部页面设置
-    Playmusic{
-        id:bottomre
-        height: 100
-        anchors.bottom: parent.bottom
-        anchors.left: parent.left
-        anchors.right: parent.right
-        color:"#fafafa"
-    }
-    //登陆窗口
     Popup{
         id:loginpopup
         anchors.centerIn: parent
@@ -221,4 +171,57 @@ Window {
             }
         }
     }
+
+    /*MouseArea{
+        anchors.fill: parent
+        property point currentpoint:"0,0"
+        onPressed:function(mouse) {
+            currentpoint=Qt.point(mouse.x,mouse.y)
+        }
+        onPositionChanged:function(mouse){
+            let delta=Qt.point(mouse.x-currentpoint.x,mouse.y-currentpoint.y)
+            window.x+=delta.x
+            window.y+=delta.y
+        }
+    }*/
+}
+
+//总窗口
+/*Common{
+    id:window
+    width: 1024//1314
+    height: 670//933
+
+    //左页面设置
+    Left{
+        id:leftre
+        width: 255
+        anchors.top: parent.top
+        anchors.bottom: bottomre.top
+        color: "#f0f3f6"
+    }
+
+
+    //右页面设置
+    Right{
+        id:rightre
+        anchors.top: parent.top
+        anchors.left: leftre.right
+        anchors.right: parent.right
+        anchors.bottom: bottomre.top
+        color:"#f7f9fc"
+
+    }
+
+    //底部页面设置
+    Playmusic{
+        id:bottomre
+        height: 100
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        color:"#fafafa"
+    }
+登陆窗口
+
 }*/

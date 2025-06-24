@@ -5,7 +5,7 @@ Rectangle {
 
     Text {
         anchors.centerIn: parent
-        text: "CenterLeft"
+        text: "LeftSelectors"
         font {
             pixelSize: 24
             family: "黑体"

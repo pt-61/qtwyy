@@ -17,18 +17,18 @@
         <file>Src/Right/StackPages/CherryPick/CherryPick.qml</file>
         <file>Src/Right/StackPages/CherryPick/CherryCarousel.qml</file>
         <file>Src/Right/StackPages/CherryPick/CherryPlayerlist.qml</file>
-        <file>Src/Common/Top/Top.qml</file>
-        <file>Src/Common/Center/Center.qml</file>
         <file>Src/Common/Bottom/Bottom.qml</file>
-        <file>Src/Common/Top/TopLeft/TopLeft.qml</file>
-        <file>Src/Common/Top/TopRight/TopRight.qml</file>
-        <file>Src/Common/Center/CenterLeft/CenterLeft.qml</file>
-        <file>Src/Common/Center/CenterRight/CenterRight.qml</file>
-        <file>Src/Common/Bottom/BottomLeft/BottomLeft.qml</file>
-        <file>Src/Common/Bottom/BottomRight/BottomRight.qml</file>
-        <file>Src/Common/Center/CenterRight/Cherry/Cherry.qml</file>
-        <file>Src/Common/Center/CenterRight/Cherry/CherrySelector/CherrySelector.qml</file>
-        <file>Src/Common/Top/TopRight/Title/RightTop.qml</file>
-        <file>Src/Common/Top/TopRight/Title/Search.qml</file>
+        <file>Src/Common/LeftSelectors/LeftSelectors.qml</file>
+        <file>Src/Common/Logo/Logo.qml</file>
+        <file>Src/Common/Stack/Cherry/Cherry.qml</file>
+        <file>Src/Common/Stack/Cherry/CherrySelector.qml</file>
+        <file>Src/Common/Stack/Settings/SettingStack/Common.qml</file>
+        <file>Src/Common/Stack/Settings/SettingStack/Counter.qml</file>
+        <file>Src/Common/Stack/Settings/Settings.qml</file>
+        <file>Src/Common/ToolBar/RightTop.qml</file>
+        <file>Src/Common/ToolBar/Search.qml</file>
+        <file>Src/Common/ToolBar/ToolBar.qml</file>
+        <file>Src/Common/ToolBar/Usersetting.qml</file>
+        <file>Src/Common/Bottom/Player.qml</file>
     </qresource>
 </RCC>
