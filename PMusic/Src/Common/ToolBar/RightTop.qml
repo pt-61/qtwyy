@@ -1,7 +1,6 @@
 import QtQuick
 
 Rectangle{
-    property bool isbig: false
     Row{
         id:rightrow
         spacing: 15
@@ -29,6 +28,7 @@ Rectangle{
                     duration: 200
                 }
             }
+
             HoverHandler{
                 onHoveredChanged: {
                     if(hovered){
@@ -36,12 +36,6 @@ Rectangle{
                     }else{
                         hide.opacity=1.0
                     }
-                }
-            }
-
-            TapHandler{
-                onTapped: {
-                    window.showMinimized()
                 }
             }
         }
@@ -55,6 +49,7 @@ Rectangle{
                     duration: 200
                 }
             }
+
             HoverHandler{
                 onHoveredChanged: {
                     if(hovered){
@@ -63,19 +58,6 @@ Rectangle{
                     else{
                         onbig.opacity=1
                     }
-                }
-            }
-            TapHandler{
-                onTapped: {
-                    if(!isbig){
-                        window.showMaximized()
-                        isbig=true
-                    }
-                    else{
-                        window.showNormal()
-                        isbig=false
-                    }
-
                 }
             }
         }
@@ -90,6 +72,7 @@ Rectangle{
                     duration: 200
                 }
             }
+
             HoverHandler{
                 onHoveredChanged: {
                     if(hovered){

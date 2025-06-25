@@ -44,30 +44,10 @@ Item {
                         anchors.top:selectlabel.bottom
                         height: 3
                         anchors.topMargin: 3
-                        color: "#eb4d44"
+                        color: selectedrep.selectedindex===index?"#eb4d44":"white"
                     }
-                    MouseArea{
-                        anchors.fill: parent
-                        hoverEnabled: true
-                        onEntered: {
-                            if(selectedrep.selectedindex===index){
-                                selectlabel.color="white"
-                            }
-                            else{
-                                selectlabel.color="#b9b9ba"
-                            }
-                            cursorShape=Qt.ArrowCursor
-                        }
-                        onExited: {
-                            if(selectedrep.selectedindex===index){
-                                selectlabel.color="#a1a1a3"
-                            }
-                            else{
-                                selectlabel.color="white"
-                            }
-                            cursorShape=Qt.ArrowCursor
-                        }
-                        onClicked: {
+                    TapHandler{
+                        onTapped: {
                             selectedrep.selectedindex=index
                         }
                     }
@@ -97,8 +77,8 @@ Item {
                 Counter{}
                 //常规
                 Commons{
-                    anchors.top: Counter.bottom
-                    anchors.topMargin: 50
+                    anchors.left: parent.left
+                    anchors.right: parent.right
                 }
             }
         }

@@ -14,9 +14,7 @@ Item {
         anchors.left: parent.left
         color: "black"
     }
-    Label{
 
-    }
     //字体选择框
     ComboBox{
         id:fontselected
@@ -30,9 +28,7 @@ Item {
             radius: parent.height/2
             border.width: 1
             border.color: "#1a1a20"
-            MouseArea{
 
-            }
 
         }
         popup: Popup{
@@ -45,6 +41,7 @@ Item {
                 color: "#2d2d37"
                 clip: true
                 ListView{
+
                     anchors.fill: parent
                     model: ["默认","仿宋","华文仿宋","华文新魏","华文新黑","华文行书","华文楷书"]
                     delegate: Rectangle{
@@ -58,22 +55,25 @@ Item {
                             anchors.left: parent.left
                             anchors.leftMargin: 10
                             anchors.verticalCenter: parent.verticalCenter
-                            MouseArea{
-                                anchors.fill: parent
-                                hoverEnabled: true
-                                onEntered: {
-                                    parent.color="#393943"
-                                    cursorShape=Qt.PointingHandCursor
+                            HoverHandler{
+                                onHoveredChanged: {
+                                    if(hovered){
+                                        parent.color="#393943"
+                                        cursorShape=Qt.PointingHandCursor
+                                    }else{
+                                        parent.color="transparent"
+                                        cursorShape=Qt.ArrowCursor
+                                    }
                                 }
-                                onExited: {
-                                    parent.color="transparent"
-                                    cursorShape=Qt.ArrowCursor
-                                }
-                                onClicked: {
+                            }
 
+                            TapHandler{
+                                onTapped: {
                                     fontselected.popup.close()
                                 }
                             }
+
+
                         }
                     }
                 }

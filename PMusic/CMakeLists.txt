@@ -38,6 +38,8 @@ qt_add_qml_module(appPMusic
     QML_FILES Src/Common/ToolBar/Usersetting.qml
     QML_FILES
     RESOURCES rec.qrc
+    QML_FILES Src/Common/Bottom/Player.qml
+    SOURCES songmodel.cpp songmodel.h
 )
 
 target_compile_features(appPMusic PRIVATE cxx_std_23)
@@ -45,6 +47,7 @@ target_compile_features(appPMusic PRIVATE cxx_std_23)
 target_link_libraries(appPMusic
     PRIVATE
         Qt6::Quick
+        tag
 )
 
 set_target_properties(appPMusic PROPERTIES

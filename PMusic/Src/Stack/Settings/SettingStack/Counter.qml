@@ -37,16 +37,15 @@ Item {
             color: "white"
 
         }
-        MouseArea{
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: {
-                parent.opacity=0.8
-                cursorShape=Qt.PointingHandCursor
-            }
-            onExited: {
-                parent.opacity=1
-                cursorShape=Qt.ArrowCursor
+        HoverHandler{
+            onHoveredChanged: {
+                if(hovered){
+                    parent.opacity=0.8
+                    cursorShape=Qt.PointingHandCursor
+                }else{
+                    parent.opacity=1
+                    cursorShape=Qt.ArrowCursor
+                }
             }
         }
     }

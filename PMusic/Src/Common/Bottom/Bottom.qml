@@ -5,7 +5,8 @@ import QtMultimedia
 
 
 Rectangle {
-    color: bottomColor
+    color: "#fafafa"
+
 
     property var parsedLyrics: []
     property int currentnIndex: 0
@@ -21,9 +22,11 @@ Rectangle {
         width: 50
         height: 30
     }
+
+
     Image {
         id:p
-        source: "/close"
+        source: "qrc:/Src/image/close.png"
         anchors.verticalCenter: parent.verticalCenterr
         anchors.top: parent.top
         anchors.topMargin: 10
@@ -32,13 +35,13 @@ Rectangle {
 
     }
     Image {
-        source: "/close"
+        source: "qrc:/right.png"
         anchors.verticalCenter: p.verticalCenter
         anchors.right: p.left
         anchors.rightMargin: 30
     }
     Image {
-        source: "/close"
+        source: "qrc:/left.png"
         anchors.verticalCenter: p.verticalCenter
         anchors.left: p.right
         anchors.leftMargin: 30
