@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Src/image/blackImg.png</file>
+        <file>Src/image/close.png</file>
+        <file>Src/image/hide.png</file>
+        <file>Src/image/cs.png</file>
+        <file>Src/image/make.png</file>
+        <file>Src/image/mini.png</file>
+        <file>Src/image/name.png</file>
+        <file>Src/image/onbig.png</file>
+        <file>Src/image/record.png</file>
+        <file>Src/image/rightArrow.png</file>
+        <file>Src/image/search.png</file>
+        <file>Src/image/sing.png</file>
+        <file>Src/image/spcan.png</file>
+    </qresource>
+</RCC>
