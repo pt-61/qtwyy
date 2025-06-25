@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Src/Stack/Cherry/Cherry.qml</file>
+        <file>Src/Stack/Cherry/CherrySelector.qml</file>
+        <file>Src/Stack/Settings/Settings.qml</file>
+        <file>Src/Stack/Settings/SettingStack/Commons.qml</file>
+        <file>Src/Stack/Settings/SettingStack/Counter.qml</file>
+    </qresource>
+</RCC>
