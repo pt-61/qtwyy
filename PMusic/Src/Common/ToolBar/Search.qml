@@ -7,11 +7,10 @@ Row{
         width: 24
         height: 35
         color: "transparent"
-        border.color: "red"
+        border.color: "white"
         border.width: 1
         Image {
             source: "qrc:/back.png"
-
         }
     }
     TextField{
@@ -59,9 +58,7 @@ Row{
                     anchors.right: parent.right
                     anchors.rightMargin: 5
                     width: 10
-
                 }
-
                 Column{
                     anchors.fill: parent
                     spacing: 40

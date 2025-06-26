@@ -19,4 +19,10 @@
         <file>right.png</file>
         <file>song.png</file>
     </qresource>
+    <qresource prefix="/mp3">
+        <file>mp3.1/Taylor Swift - Shake It Off.mp3</file>
+        <file>mp3.1/Taylor Swift - Welcome To New York.mp3</file>
+        <file>mp3.1/Taylor Swift - Wildest Dreams.mp3</file>
+    </qresource>
+    <qresource prefix="/new/prefix1"/>
 </RCC>

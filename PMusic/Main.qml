@@ -171,22 +171,18 @@ Window {
     }
 
     Rectangle{
-
-
-        id:ly
+        id:lywindow
         width: parent.width
         anchors.top: parent.top
-        height: 600
+        height: parent.height
         opacity: 0
         state: "min"
         color:"blue"
-
-
         states: [
             State {
                 name: "big"
                 PropertyChanges {
-                    target: ly
+                    target: lywindow
                     opacity:1
                     y:window.y
                 }
@@ -194,18 +190,19 @@ Window {
             State {
                 name: "min"
                 PropertyChanges {
-                    target: ly
+                    target: lywindow
                     opacity:0
                     y:window.height
                 }
             }]
+        property var parsedLyrics: []
 
         transitions: Transition {
             from: "*"
             to: "*"
             SequentialAnimation{
                 NumberAnimation {
-                target: ly
+                target: lywindow
                 property: "opactiy"
                 duration: 200
                 }
@@ -217,7 +214,67 @@ Window {
                 }
             }
         }
+        Rectangle{
+            id:lyclose
+            color:"black"
+            height: 50
+            width: 50
+            anchors.top: parent.top
+            anchors.topMargin: 20
+            anchors.left: parent.left
+            anchors.leftMargin: 30
+        }
 
+        function parseUSLT(lyrics) {
+               var result = [];
+
+               // 移除USLT头部信息
+               var content = lyrics;
+               if (lyrics.startsWith("USLT::")) {
+                   var firstNewline = lyrics.indexOf("\n");
+                   if (firstNewline !== -1) {
+                       content = lyrics.substring(firstNewline + 1);
+                   }
+               }
+
+               // 分割为行
+               var lines = content.split('\n');
+
+               for (var i = 0; i < lines.length; i++) {
+                   var line = lines[i].trim();
+                   if (line.length === 0) continue;
+
+                   // 匹配时间标签 [mm:ss.xx]
+                   var timeMatch = line.match(/\[(\d+):(\d+\.\d+)\]/);
+                   if (timeMatch && timeMatch.length >= 3) {
+                       var minutes = parseInt(timeMatch[1]);
+                       var seconds = parseFloat(timeMatch[2]);
+                       var timeInSeconds = minutes * 60 + seconds;
+
+                       // 提取歌词文本
+                       var text = line.substring(timeMatch[0].length).trim();
+
+                       if (text) {
+                           result.push({
+                               time: timeInSeconds,
+                               text: text
+                           });
+                       }
+                   } else {
+                       // 没有时间标签的行作为上一行的延续
+                       if (result.length > 0) {
+                           result[result.length - 1].text += "\n" + line;
+                       } else {
+                           // 如果第一行没有时间标签，则添加到列表开始处
+                           result.push({
+                               time: 0,
+                               text: line
+                           });
+                       }
+                   }
+               }
+               result.sort((a,b)=>a.time-b.time);
+               return result;
+        }
     }
-
 }

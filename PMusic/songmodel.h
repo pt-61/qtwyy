@@ -70,7 +70,7 @@ protected:
 private:
     QList<Song>m_songs;
 signals:
-
+    void some();
 };
 
 #endif // SONGMODEL_H

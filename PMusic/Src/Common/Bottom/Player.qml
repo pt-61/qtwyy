@@ -8,14 +8,8 @@ MediaPlayer{
     property int currentnIndex: 0
     property real currentTime: 0.0
     property bool  isplay: true
-
-    id:player
     autoPlay: true
     audioOutput: AudioOutput{}
-    onPositionChanged: {
-        currentTime=player.position/1000;
-        updataCurrentlyricIndex();
-    }
     function updataCurrentlyricIndex(){
            if(parsedLyrics.length===0)return;
 

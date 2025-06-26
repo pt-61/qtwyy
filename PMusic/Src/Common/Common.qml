@@ -6,7 +6,7 @@ import "./LeftSelectors"
 import "./Bottom"
 
 Rectangle {
-    color: "gray"
+    color: "#f7f9fc"
 
     Text {
         anchors.centerIn: parent
@@ -17,7 +17,15 @@ Rectangle {
             bold: true
         }
     }
+    Connections{
+        target: songmodel
+        function onSome(){
+            console.log("2")
+        }
+    }
 
+    signal buttoncilck(string msg)
+    property string songsource: ""
     //顶部行布局高度
     property double topRow_Height: 50
     //中部行布局高度
@@ -53,6 +61,11 @@ Rectangle {
                 width: right_Width
                 height: parent.height
                 clip: true
+            }
+            DragHandler{
+                onActiveChanged: {
+                    if(active)window.startSystemMove()
+                }
             }
         }
         //中部行布局

@@ -11,7 +11,7 @@ Rectangle {
     //鼠标触发时的区域位置
     property int whichSpace: 0
     //标签颜色
-    property color labelColor: basicColor
+    property color labelColor: basicLabelColor
     Item {
         width: selectorsItem_Width
         anchors {

@@ -7,11 +7,21 @@ import QtMultimedia
 Rectangle {
     color: "#fafafa"
 
-
     property var parsedLyrics: []
     property int currentnIndex: 0
     property real currentTime: 0.0
     property bool  isplay: true
+
+    Button{
+        onClicked: {
+            if(lywindow.state==="min"){
+                lywindow.state="big"
+            }
+            else{
+                lywindow.state="min"
+            }
+        }
+    }
 
     Rectangle{
         anchors.top: parent.top
@@ -84,45 +94,17 @@ Rectangle {
         }
 
     }
-        MediaPlayer{
-            id:player
-            autoPlay: true
-            audioOutput: AudioOutput{}
-            onPositionChanged: {
-                currentTime=player.position/1000;
-                updataCurrentlyricIndex();
-            }
-        }
-    function updataCurrentlyricIndex(){
-               if(parsedLyrics.length===0)return;
-
-               if(currentTime<parsedLyrics[0].time){
-                   currentnIndex=0;
-                   return;
-               }
-
-               if(currentTime>parsedLyrics[parsedLyrics.length-1].time){
-                   currentnIndex=parsedLyrics.length-1;
-                   return;
-               }
-
-               for(var i=0;i<parsedLyrics.length-1;i++){
-                   if(currentTime>=parsedLyrics[i].time&&currentTime<parsedLyrics[i+1].time){
-                       currentnIndex=i;
-                       break;
-                   }
-               }
-               if(lyricslistview.currentIndex!==currentIndex){
-                   lyricslistview.currentIndex=currentnIndex
-
-                   lyricslistview.positionViewAtIndex(currentnIndex,ListView.Center)
-               }
-        }
     function formatTion(seconds){
             var mins=Math.floor(seconds/60);
             var secs=Math.floor(seconds%60);
             var minstr=mins<10?"0"+mins:mins;
             var secstr=secs<10?"0"+secs:secs;
             return minstr+":"+secstr;
+    }
+    Player{id:player
+        onPositionChanged: {
+            currentTime=player.position/1000;
+            updataCurrentlyricIndex();
+        }
     }
 }

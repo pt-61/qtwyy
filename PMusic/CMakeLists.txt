@@ -40,6 +40,7 @@ qt_add_qml_module(appPMusic
     RESOURCES rec.qrc
     QML_FILES Src/Common/Bottom/Player.qml
     SOURCES songmodel.cpp songmodel.h
+    SOURCES getimage.cpp getimage.h getlyrics.cpp getlyrics.h
 )
 
 target_compile_features(appPMusic PRIVATE cxx_std_23)
