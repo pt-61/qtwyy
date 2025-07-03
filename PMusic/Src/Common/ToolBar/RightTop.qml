@@ -1,6 +1,7 @@
 import QtQuick
 
 Rectangle{
+     property bool isbig: false
     Row{
         id:rightrow
         spacing: 15
@@ -38,6 +39,11 @@ Rectangle{
                     }
                 }
             }
+            TapHandler{
+                onTapped: {
+                    window.showMinimized()
+                }
+            }
         }
         //放大
         Image {
@@ -58,6 +64,19 @@ Rectangle{
                     else{
                         onbig.opacity=1
                     }
+                }
+            }
+            TapHandler{
+                onTapped: {
+                    if(!isbig){
+                        window.showMaximized()
+                        isbig=true
+                    }
+                    else{
+                        window.showNormal()
+                        isbig=false
+                    }
+
                 }
             }
         }

@@ -6,6 +6,7 @@ import "./LeftSelectors"
 import "./Bottom"
 
 Rectangle {
+    id:common
     color: "#f7f9fc"
 
     Text {
@@ -17,12 +18,7 @@ Rectangle {
             bold: true
         }
     }
-    Connections{
-        target: songmodel
-        function onSome(){
-            console.log("2")
-        }
-    }
+
 
     signal buttoncilck(string msg)
     property string songsource: ""
@@ -48,6 +44,8 @@ Rectangle {
         anchors.fill: parent
         //顶部行布局
         Row {
+            anchors.left: parent.left
+            anchors.right: parent.right
             width: parent.width
             height: topRow_Height
             //logo布局

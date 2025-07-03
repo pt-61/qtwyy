@@ -42,11 +42,6 @@ Row{
                 text: "未登录"
                 color: "#75777f"
                 anchors.verticalCenter: parent.verticalCenter
-                TapHandler{
-                    onTapped: {
-                        loginpopup.open()
-                    }
-                }
             }
         }
     }

@@ -1,6 +1,6 @@
 #include "songmodel.h"
-//#include<getlyrics.h>
-//#include<getimage.h>
+#include<getlyrics.h>
+#include<getimage.h>
 Songmodel::Songmodel(QObject *parent)
     : QAbstractListModel{parent}
 {
@@ -18,7 +18,21 @@ void Songmodel::scanDirectory(const QString &path)
     QStringList files=dir .entryList(filters,QDir::Files|QDir::NoSymLinks,QDir::Name);
     foreach (QString file, files) {
         QString filepath=dir .absoluteFilePath(file);
-        TagLib::FileRef f(filepath.toStdString().c_str());
+        QString realFilePath = filepath;
+        if (filepath.startsWith(":/")) {
+            QFile resourceFile(filepath);
+            if (resourceFile.open(QIODevice::ReadOnly)) {
+                QString tempPath = QDir::temp().filePath(QFileInfo(filepath).fileName());
+                QFile tempFile(tempPath);
+                if (tempFile.open(QIODevice::WriteOnly)) {
+                    tempFile.write(resourceFile.readAll());
+                    tempFile.close();
+                    realFilePath = tempPath;
+                }
+                resourceFile.close();
+            }
+        }
+        TagLib::FileRef f(realFilePath.toStdString().c_str());
         if(f.isNull()){
             continue;
         }
@@ -27,11 +41,11 @@ void Songmodel::scanDirectory(const QString &path)
         song.title=QString::fromStdString(tag->title().toCString(true));
         song.actist=QString::fromStdString(tag->artist().toCString(true));
         song.album=QString::fromStdString(tag->album().toCString(true));
-        song.filePath=filepath;
-       // song.lyrics=getLyrics(song.filePath);
-        //song.albumArtPath=getimage(song.filePath);
+        song.filePath = realFilePath;
+        song.lyrics = getLyrics(song.filePath);
+        song.albumArtPath = getimage(song.filePath);
 
-        if(!song.lyrics.isEmpty()){
+        /*if(!song.lyrics.isEmpty()){
             QRegularExpression rx("\\[(\\d+):(\\d+)\\.(\\d+)\\](.*)");
             QStringList lines=song.lyrics.split("\n");
 
@@ -54,12 +68,11 @@ void Songmodel::scanDirectory(const QString &path)
                 }
             }
         }
-
+        */
         addsong(song);
     }
 
 }
-
 void Songmodel::addsong(const Song &song)
 {
     beginInsertRows(QModelIndex(),m_songs.size(),m_songs.size());
@@ -80,17 +93,17 @@ QVariant Songmodel::data(const QModelIndex &index, int role) const
         return QVariant();
     const Song &song=m_songs[index.row()];
     switch (role) {
-    case TitleRloe:
+    case TitleRole:
         return song.title;
-    case ActistRloe:
+    case ActistRole:
         return song.actist;
-    case AlbumRloe:
+    case AlbumRole:
         return song.album;
-    case FilePathRloe:
+    case FilePathRole:
         return song.filePath;
-    case LycricsRloe:
+    case LycricsRole:
         return song.lyrics;
-    case ParsedlyricsRloe:
+    case ParsedlyricsRole:
         return QVariant::fromValue( song.parsedlyrics);
     case AlbumArtRole:
         return song.albumArtPath;
@@ -102,12 +115,39 @@ QVariant Songmodel::data(const QModelIndex &index, int role) const
 QHash<int, QByteArray> Songmodel::roleNames() const
 {
     QHash<int,QByteArray>roles;
-    roles[TitleRloe]="title";
-    roles[ActistRloe]="actist";
-    roles[AlbumRloe]="album";
-    roles[FilePathRloe]="filepath";
-     roles[LycricsRloe]="lyrics";
-    roles[ParsedlyricsRloe]="parsedlyrics";
-      roles[AlbumArtRole] = "albumArt";
+    roles[TitleRole]="title";
+    roles[ActistRole]="actist";
+    roles[AlbumRole]="album";
+    roles[FilePathRole]="filepath";
+    roles[LycricsRole]="lyrics";
+    roles[ParsedlyricsRole]="parsedlyrics";
+    roles[AlbumArtRole] = "albumArt";
     return roles;
 }
+
+QString Songmodel::getSongFilePath(int index) const
+{
+    if (index >= 0 && index < m_songs.size()) {
+        return m_songs[index].filePath;
+    }
+    return QString();
+}
+
+QString Songmodel::getSongLyrics(int index) const
+{
+    if (index >= 0 && index < m_songs.size()) {
+        return m_songs[index].lyrics;
+    }
+    return QString();
+}
+
+QString Songmodel::getSongAlbumArt(int index) const
+{
+    if (index >= 0 && index < m_songs.size()) {
+        return m_songs[index].albumArtPath;
+    }
+    return QString();
+}
+
+
+

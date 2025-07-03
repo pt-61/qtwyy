@@ -46,12 +46,12 @@ class Songmodel : public QAbstractListModel
     Q_OBJECT
 public:
     enum SongRole{
-        TitleRloe=Qt::UserRole+1,
-        ActistRloe,
-        AlbumRloe,
-        FilePathRloe,
-        LycricsRloe,
-        ParsedlyricsRloe,
+        TitleRole=Qt::UserRole+1,
+        ActistRole,
+        AlbumRole,
+        FilePathRole,
+        LycricsRole,
+        ParsedlyricsRole,
         AlbumArtRole
     };
 
@@ -63,6 +63,9 @@ public:
 
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;
+    Q_INVOKABLE QString getSongFilePath(int index) const;
+    Q_INVOKABLE QString getSongLyrics(int index) const;
+    Q_INVOKABLE QString getSongAlbumArt(int index) const;
 
 protected:
     QHash<int,QByteArray>roleNames()const override;
@@ -70,7 +73,10 @@ protected:
 private:
     QList<Song>m_songs;
 signals:
+    void isplay();
     void some();
+    void findindex(int index);
+    void playmusic(QString path,QString lycrics ,QString alubmartpath,int index,int listviewcount);
 };
 
 #endif // SONGMODEL_H
