@@ -2,32 +2,28 @@ import QtQuick
 import QtQuick.Controls
 
 Repeater {
-    id: optionRep
-    //选中的索引
-    property int selectedIndex: 0
+    //成员高度
+    property double optionRepItem_Height
     //当前的区域位置
-    property int currentSpace: 0
-    //区域位置传递变量
-    property alias spaceNumber: optionRep.currentSpace
+    property int currentSpace
+
     Item {
         width: parent.width
-        height: selectorsItem_Height
+        height: optionRepItem_Height
         clip: true
-
-
         //选项指示器
         Rectangle {
             width: parent.width
             height: parent.height
             color: "red"
             radius: 10
-            visible: (selectedIndex === index && whichSpace === spaceNumber)
+            visible: (selectedIndex === index && whichSpace === currentSpace)
         }
         //选项标签
         Label {
             anchors {
                 left: parent.left
-                leftMargin: 40
+                leftMargin: parent.height
                 verticalCenter: parent.verticalCenter
             }
             text: name
@@ -36,18 +32,34 @@ Repeater {
                 family: "黑体"
                 bold: true
             }
-            color: (selectedIndex === index && whichSpace === spaceNumber) ? "white" : labelColor
+            color: (selectedIndex === index && whichSpace === currentSpace) ? "white" : labelColor
+        }
+        //选项指示高亮
+        Rectangle {
+            id: optionHighlightRec
+            width: parent.width
+            height: parent.height
+            color: "gray"
+            radius: 10
+            opacity: 0.1
+            visible: false
         }
         //鼠标事件
+        HoverHandler {
+            cursorShape: Qt.PointingHandCursor
+            onHoveredChanged: {
+                if(hovered)
+                    optionHighlightRec.visible = true
+                else
+                    optionHighlightRec.visible = false
+            }
+        }
         TapHandler {
             onTapped: {
                 selectedIndex = index
-                whichSpace = spaceNumber
-                mainStack.push(link)
+                whichSpace = currentSpace
+                mainStack.push(URL)
             }
-        }
-        HoverHandler {
-            cursorShape: Qt.PointingHandCursor
         }
     }
 }

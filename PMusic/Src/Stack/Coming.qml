@@ -3,7 +3,7 @@ import QtQuick
 Rectangle {
     Text {
         anchors.centerIn: parent
-        text: "PMusic"
+        text: "coming"
         font {
             pixelSize: 24
             family: "黑体"

@@ -1,8 +1,6 @@
 import QtQuick
 
 Rectangle {
-    color: "#f7f9fc"
-
     RightTop{
         id:righttop
         anchors.right: parent.right

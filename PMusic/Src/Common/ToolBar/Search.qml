@@ -12,6 +12,10 @@ Row{
         Image {
             source: "qrc:/back.png"
         }
+        //鼠标事件
+        TapHandler {
+            onTapped: mainStack.pop()
+        }
     }
     TextField{
         id:searchfield

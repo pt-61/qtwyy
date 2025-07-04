@@ -44,6 +44,7 @@ qt_add_qml_module(appPMusic
     QML_FILES
     QML_FILES
     QML_FILES Src/Common/Bottom/Lywindow.qml
+    QML_FILES
 
 )
 

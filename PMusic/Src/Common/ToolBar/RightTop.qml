@@ -71,10 +71,12 @@ Rectangle{
                     if(!isbig){
                         window.showMaximized()
                         isbig=true
+                        common.horCount = 3
                     }
                     else{
                         window.showNormal()
                         isbig=false
+                        common.horCount = 2
                     }
 
                 }
