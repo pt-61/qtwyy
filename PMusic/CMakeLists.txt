@@ -4,7 +4,7 @@ project(PMusic VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 REQUIRED COMPONENTS Quick)
+find_package(Qt6 REQUIRED COMPONENTS Quick )
 
 qt_standard_project_setup(REQUIRES 6.9)
 
@@ -37,13 +37,16 @@ qt_add_qml_module(appPMusic
     QML_FILES Src/Common/ToolBar/Search.qml
     QML_FILES Src/Common/ToolBar/Usersetting.qml
     QML_FILES
-    RESOURCES rec.qrc
+    RESOURCES
     QML_FILES Src/Common/Bottom/Player.qml
     SOURCES songmodel.cpp songmodel.h
     SOURCES getimage.cpp getimage.h getlyrics.cpp getlyrics.h
     QML_FILES
     QML_FILES
     QML_FILES Src/Common/Bottom/Lywindow.qml
+    RESOURCES
+    RESOURCES rec.qrc
+
 
 )
 
@@ -53,6 +56,7 @@ target_link_libraries(appPMusic
     PRIVATE
         Qt6::Quick
         tag
+
 )
 
 set_target_properties(appPMusic PROPERTIES

@@ -1,4 +1,3 @@
-
 #include"getimage.h"
 QString getimage(const QString &filePath){
     TagLib::MPEG::File mpegFile(filePath.toStdString().c_str(),TagLib::ID3v2::FrameFactory::instance());

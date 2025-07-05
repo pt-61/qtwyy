@@ -2,33 +2,38 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import QtMultimedia
+import Qt5Compat.GraphicalEffects
+
 Rectangle{
     id:lywindow
     width: window.width
     height:window.height
     state: "min"
-    color:"blue"
+    color:"#1d1a23"
+
+    TapHandler {
+        acceptedDevices: PointerDevice.AllDevices
+        gesturePolicy: TapHandler.DragThreshold
+        enabled: lywindow.state === "big"?true:false
+
+    }
 
     Connections{
-        target: songmodel
-        function onPlaymusic(path,lyrics,alubmartpath,currentindex,listviewcount){
+        target: songmodel1
+        function onPlaymusic(path,lyrics,alubmartpath,currentindex,listviewcount,Title,Actist){
             parsedLyrics=parseUSLT(lyrics)
             listviewIndex=currentindex
-            console.log("a",listviewIndex)
+            lyimage.source="file:///"+alubmartpath
             musicpicture.source="file:///"+alubmartpath
             count=listviewcount
             player.source="file:///"+path
             player.play()
             isplay=true
+            title=Title
+            actist=Actist
+        }
+    }
 
-        }
-    }
-    Connections{
-        target: songmodel
-        function onSome(){
-            lywindow.state="big"
-        }
-    }
 
     states: [
         State {
@@ -38,6 +43,7 @@ Rectangle{
                 opacity:1
                 y:window.y
                 x:window.x
+                enabled:true
             }
         },
         State {
@@ -47,6 +53,7 @@ Rectangle{
                 opacity:0
                 width:0
                 height:0
+                enabled:false
             }
         }]
 
@@ -63,7 +70,6 @@ Rectangle{
         TapHandler{
             onTapped: {
                 lywindow.state="min"
-                lywindow.enabled=false
             }
         }
     }
@@ -71,55 +77,163 @@ Rectangle{
 
     Image {
         id:pt
-        source: "qrc:/Src/image/close.png"
+        source: "qrc:/stop1.png"
         anchors.verticalCenter: parent.verticalCenterr
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
         anchors.left: parent.left
         anchors.leftMargin: 500
-
+        TapHandler{
+            onTapped: {
+                if(isplay===true){
+                    player.pause()
+                    isplay=false
+                }
+                else{
+                    player.play()
+                    isplay=true
+                }
+            }
+        }
+        HoverHandler{
+            onHoveredChanged: {
+                if(hovered){
+                    pt.opacity=0.8
+                }else{
+                    pt.opacity=1
+                }
+            }
+        }
     }
     Image {
-        source: "qrc:/right.png"
+        id:lyleft
+        source: "qrc:/left.png"
         anchors.verticalCenter: pt.verticalCenter
         anchors.right: pt.left
         anchors.rightMargin: 30
         TapHandler{
             onTapped: {
-                console.log("b:",listviewIndex)
-                var b=(listviewIndex+1+count)%count
-                songmodel.findindex(b)
+                console.log("a:",listviewIndex)
+                var a=(listviewIndex-1+count)%count
+                songmodel1.findindex(a)
+            }
+        }
+        HoverHandler{
+            onHoveredChanged: {
+                if(hovered){
+                    lyleft.opacity=0.8
+                }else{
+                    lyleft.opacity=1
+                }
             }
         }
     }
     Image {
-        source: "qrc:/left.png"
+        id:lyright
+        source: "qrc:/right.png"
         anchors.verticalCenter: pt.verticalCenter
         anchors.left: pt.right
         anchors.leftMargin: 30
         TapHandler{
             onTapped: {
-                var a=(listviewIndex-1+count)%count
-               // songmodel.findindex(a)
+                console.log("b:",listviewIndex)
+                var b=(listviewIndex+1+count)%count
+                songmodel1.findindex(b)
+            }
+        }
+        HoverHandler{
+            onHoveredChanged: {
+                if(hovered){
+                    lyright.opacity=0.8
+                }else{
+                    lyright.opacity=1
+                }
             }
         }
     }
 
+    Item {
+        anchors.top: parent.top
+        anchors.topMargin: 50
+        width:300
+        height: 300
+        Image {
+            id: lyimage
+            sourceSize: Qt.size(parent.width,parent.height)
+            visible: false
+        }
+        Rectangle{
+            id:mask
+            width: 300
+            height: 300
+            radius: width/2
+            visible: true
+        }
+        OpacityMask{
+            anchors.fill: lyimage
+            maskSource: mask
+            source: lyimage
+        }
+        RotationAnimation on  rotation {
+            from: 0
+            to:360
+            duration: 1500
+            loops: Animation.Infinite
+            running: isplay
+        }
+    }
+
+    Rectangle{
+        anchors.right: parent.right
+        anchors.rightMargin: 100
+        anchors.bottom: lyvolumerc.top
+        id:lyvolumesilder
+        height: 50
+        width: 20
+        visible: false
+        Slider{
+            anchors.fill: parent
+            orientation: Qt.Vertical
+            from: 0
+            to:1
+            value: 0.5
+            onValueChanged: player.audioOutput.volume=value
+        }
+    }
+    Image {
+        id: lyvolumerc
+        anchors.right: parent.right
+        anchors.rightMargin: 100
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 50
+        source: "qrc:/Src/image/close.png"
+            TapHandler{
+                onTapped: {
+                    if(lyvolumesilder.visible===false){
+                        lyvolumesilder.visible=true
+                        }
+                    else{
+                        lyvolumesilder.visible=false
+                    }
+                }
+            }
+        }
+
     RowLayout{
         anchors.top: pt.bottom
         anchors.left: parent.left
-        anchors.leftMargin: 20
         Layout.bottomMargin: 20
         width: 1000
         Text {
             id:s
             text:formatTion(currentTime)
+            color: "#94a3b8"
         }
         Slider{
             id:timeslider1
             Layout.fillWidth:true
             from: 0
-            to:Math.max(60,parsedLyrics.length>0?parsedLyrics[parsedLyrics.length-1].time+10:60)
+            to:parsedLyrics[parsedLyrics.length-1].time+10
             value: currentTime
             onMoved: {
                 player.pause()
@@ -127,13 +241,12 @@ Rectangle{
                 updataCurrentlyricIndex()
                 if(isplay)player.play()
             }
-
             handle: Rectangle{
                 id:handre
                 x:timeslider1.leftPadding+timeslider1.visualPosition*(timeslider1.availableWidth-width)
                 y:timeslider1.topPadding+timeslider1.availableHeight/2-height/2
-                implicitHeight: 20
-                implicitWidth: 20
+                implicitHeight: 10
+                implicitWidth: 10
                 radius: 8
                 color: timeslider1.pressed?"#ffffff":"#f8fafc"
                 border.color: "red"
@@ -142,25 +255,60 @@ Rectangle{
         }
         Text {
             text: formatTion( parsedLyrics[parsedLyrics.length-1].time)
+            color: "#94a3b8"
+        }
+    }
+    Rectangle{
+        id:tooltop
+        anchors.right: parent.right
+        width: 100
+        Image {
+            anchors.right: parent.right
+            source: "qrc:/Src/image/close.png"
+            TapHandler{
+                onTapped: {
+                    Qt.quit()
+                }
+            }
         }
     }
 
+    Rectangle{
+        id:lytop
+        anchors.right: parent.right
+        anchors.top: parent.top
+        anchors.topMargin: 50
+        height: 100
+        width: 300
+        color: "red"
+        Text {
+            id:lyTitle
+            text: qsTr(title)
+            font.pixelSize: 18
+            font.family: "微软雅黑"
+            color: "#94a3b8"
+        }
+        Text {
+            anchors.top: lyTitle.bottom
+            text: qsTr(actist)
+        }
+    }
 
     ListView{
         id:lyricslistview
         anchors.right: parent.right
-        width: 500
-        height: 500
+        width: 400
+        height: 300
         anchors.top:parent.top
+        anchors.topMargin: 200
         model:parsedLyrics
         clip: true
         highlightMoveDuration: 300
-
             delegate: Rectangle{
             id:rec1
             width: lyricslistview. width
             height: 100
-            color: index===currentNewIndex? "#e0f2f1" : "green"
+            color: index===currentNewIndex? "#7f7f7f" : "#1d1a23"
                 Text {
             text: modelData.text
             anchors.centerIn: parent
@@ -256,3 +404,4 @@ Rectangle{
            return result;
     }
 }
+

@@ -60,11 +60,7 @@ Rectangle {
                 height: parent.height
                 clip: true
             }
-            DragHandler{
-                onActiveChanged: {
-                    if(active)window.startSystemMove()
-                }
-            }
+
         }
         //中部行布局
         Row {

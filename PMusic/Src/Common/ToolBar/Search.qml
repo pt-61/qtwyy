@@ -83,7 +83,7 @@ Row{
                             }
                             Image {
                                 id: removeim
-                                source: "qrc:/Src/image/sing.png"
+                                source: "qrc:/delete.png"
                                 anchors.right: parent.right
                                 anchors.rightMargin: 30
                                 anchors.verticalCenter: searchname.verticalCenter

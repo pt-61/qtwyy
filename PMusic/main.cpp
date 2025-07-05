@@ -10,7 +10,9 @@ int main(int argc, char *argv[])
     Songmodel songmodel;
     songmodel.scanDirectory(":/mp3/mp3.1");
 
-    engine.rootContext()->setContextProperty("songmodel",&songmodel);
+    Songmodel songmodel1;
+    songmodel1.scanDirectory(":/mp3/mp3.3");
+    engine.rootContext()->setContextProperty("songmodel1",&songmodel1);
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,

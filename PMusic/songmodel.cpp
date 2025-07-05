@@ -44,31 +44,6 @@ void Songmodel::scanDirectory(const QString &path)
         song.filePath = realFilePath;
         song.lyrics = getLyrics(song.filePath);
         song.albumArtPath = getimage(song.filePath);
-
-        /*if(!song.lyrics.isEmpty()){
-            QRegularExpression rx("\\[(\\d+):(\\d+)\\.(\\d+)\\](.*)");
-            QStringList lines=song.lyrics.split("\n");
-
-            foreach (const QString &line,lines) {
-                QRegularExpressionMatch match=rx.match(line);
-                if(match.hasMatch()){
-                    bool ok;
-                    int min=match.captured(1).toInt(&ok);
-                    if(!ok) continue;
-                    int sec=match.captured(2).toInt(&ok);
-                    if(!ok) continue;
-                    int cs=match.captured(3).toInt(&ok);
-                    if(!ok)continue;
-
-                    Lrcline lrclin;
-                    lrclin.time=min*60000+sec*1000+cs*10;
-                    lrclin.text=match.captured(4).trimmed();
-
-                    song.parsedlyrics.append(lrclin);
-                }
-            }
-        }
-        */
         addsong(song);
     }
 
@@ -145,6 +120,22 @@ QString Songmodel::getSongAlbumArt(int index) const
 {
     if (index >= 0 && index < m_songs.size()) {
         return m_songs[index].albumArtPath;
+    }
+    return QString();
+}
+
+QString Songmodel::getSongTitle(int index) const
+{
+    if(index>=0&&index<m_songs.size()){
+        return m_songs[index].title;
+    }
+    return QString();
+}
+
+QString Songmodel::getSongActist(int index) const
+{
+    if(index>=0&&index<m_songs.size()){
+        return m_songs[index].actist;
     }
     return QString();
 }

@@ -25,7 +25,6 @@ struct Lrcline
     int time;
     QString text;
 };
-Q_DECLARE_METATYPE(Lrcline)
 
 
 class Song{
@@ -39,7 +38,7 @@ public:
     QString albumArtPath;
 
 };
-Q_DECLARE_METATYPE(QList<Lrcline>)
+
 
 class Songmodel : public QAbstractListModel
 {
@@ -59,24 +58,22 @@ public:
     void scanDirectory(const QString &path);
     void addsong(const Song &song);
 
-    //Q_INVOKABLE void addsongFromData(const Song &song);
 
     int rowCount(const QModelIndex &parent) const override;
     QVariant data(const QModelIndex &index, int role) const override;
     Q_INVOKABLE QString getSongFilePath(int index) const;
     Q_INVOKABLE QString getSongLyrics(int index) const;
     Q_INVOKABLE QString getSongAlbumArt(int index) const;
-
+    Q_INVOKABLE QString getSongTitle(int index)const;
+    Q_INVOKABLE QString getSongActist(int index)const;
 protected:
     QHash<int,QByteArray>roleNames()const override;
 
 private:
     QList<Song>m_songs;
 signals:
-    void isplay();
-    void some();
     void findindex(int index);
-    void playmusic(QString path,QString lycrics ,QString alubmartpath,int index,int listviewcount);
+    void playmusic(QString path,QString lycrics ,QString alubmartpath,int index,int listviewcount,QString title,QString actist);
 };
 
 #endif // SONGMODEL_H

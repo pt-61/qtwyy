@@ -98,7 +98,7 @@ Row{
     //设置
     Image {
         id: make
-        source: "qrc:/Src/image/make.png"
+        source: "qrc:/make1.png"
         HoverHandler{
             onHoveredChanged: {
                 if(hovered){
