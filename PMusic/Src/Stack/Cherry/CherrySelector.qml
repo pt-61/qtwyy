@@ -28,9 +28,7 @@ Rectangle {
             anchors.fill: parent
             model: cherrySelectorModel
             property int selectedIndex: 0
-            Rectangle {
-                color: "white"
-
+            Item {
                 width: cherryLabel.width + 10
                 height: parent.height
                 clip: true
@@ -61,24 +59,28 @@ Rectangle {
                     visible: cherrySelectorRap.selectedIndex === index
                 }
                 //鼠标事件
+                HoverHandler {
+                    cursorShape: Qt.PointingHandCursor
+                    onHoveredChanged: {
+                        if(hovered && cherrySelectorRap.selectedIndex !== index)
+                            cherryLabel.opacity = 0.8
+                        else
+                            cherryLabel.opacity = 1
+                    }
+                }
                 TapHandler {
                     onTapped: {
                         cherrySelectorRap.selectedIndex = index
-                        cherryStack.push(link)
+                        cherryStack.push(URL)
                     }
-                }
-                HoverHandler {
-                    cursorShape: Qt.PointingHandCursor
                 }
             }
         }
 
         ListModel {
             id: cherrySelectorModel
-            ListElement {name: "精选"; link: ""}
-            ListElement {name: "歌单广场"; link: ""}
-            ListElement {name: "排行榜"; link: ""}
-            ListElement {name: "歌手"; link: ""}
+            ListElement {name: "精选"; URL: "qrc:/Src/Stack/Cherry/CherryStack/cherryOption/CherryOption.qml"}
+            ListElement {name: "coming"; URL: "qrc:/Src/Stack/Cherry/CherryStack/Coming.qml"}
         }
     }
 

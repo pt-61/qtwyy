@@ -8,8 +8,8 @@ import "./Src/Common"
 
 Window {
     id:window
-    width: 1024//1314
-    height: 670//933
+    width: 1050//1314
+    height: 750//933
     visible: true
     //界面边框处理
     flags: Qt.FramelessWindowHint|Qt.Window|Qt.WindowSystemMenuHint|Qt.WindowMaximizeButtonHint|Qt.WindowMinimizeButtonHint
