@@ -82,7 +82,7 @@ Rectangle{
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
         anchors.left: parent.left
-        anchors.leftMargin: 500
+        anchors.leftMargin: parent.width/2
         TapHandler{
             onTapped: {
                 if(isplay===true){
@@ -154,9 +154,11 @@ Rectangle{
 
     Item {
         anchors.top: parent.top
-        anchors.topMargin: 50
-        width:300
-        height: 300
+        anchors.topMargin: parent.height/8
+        width:(parent.height-80)/3
+        height: (parent.height-80)/3
+        anchors.left: parent.left
+        anchors.leftMargin: parent.width/10
         Image {
             id: lyimage
             sourceSize: Qt.size(parent.width,parent.height)
@@ -164,8 +166,9 @@ Rectangle{
         }
         Rectangle{
             id:mask
-            width: 300
-            height: 300
+            anchors.fill: parent
+            width: (parent.height-80)/3
+            height:(parent.height-80)/3
             radius: width/2
             visible: true
         }
@@ -223,7 +226,7 @@ Rectangle{
         anchors.top: pt.bottom
         anchors.left: parent.left
         Layout.bottomMargin: 20
-        width: 1000
+        width: parent.width
         Text {
             id:s
             text:formatTion(currentTime)
@@ -277,16 +280,16 @@ Rectangle{
         id:lytop
         anchors.right: parent.right
         anchors.top: parent.top
-        anchors.topMargin: 50
-        height: 100
-        width: 300
+        anchors.topMargin: parent.height/10
+        height: (parent.height-80)/3
+        width: parent.width/2
         color: "red"
         Text {
             id:lyTitle
             text: qsTr(title)
-            font.pixelSize: 18
+            font.pixelSize: 30
             font.family: "微软雅黑"
-            color: "#94a3b8"
+            color: "#ffffff"
         }
         Text {
             anchors.top: lyTitle.bottom
@@ -297,8 +300,8 @@ Rectangle{
     ListView{
         id:lyricslistview
         anchors.right: parent.right
-        width: 400
-        height: 300
+        width: parent.width/2
+        height: (parent.height-80)*2/3
         anchors.top:parent.top
         anchors.topMargin: 200
         model:parsedLyrics
@@ -312,7 +315,7 @@ Rectangle{
                 Text {
             text: modelData.text
             anchors.centerIn: parent
-            color:index=== currentNewIndex?"#3b82f6":"#94a3b8"
+            color:index=== currentNewIndex?"#ffffff":"#94a3b8"
             font.bold: index===currentNewIndex
                 }
             }

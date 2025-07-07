@@ -1,6 +1,8 @@
 #include "songmodel.h"
 #include<getlyrics.h>
 #include<getimage.h>
+#include <QUrl>
+#include <QFileInfo>
 Songmodel::Songmodel(QObject *parent)
     : QAbstractListModel{parent}
 {
@@ -10,12 +12,32 @@ Songmodel::Songmodel(QObject *parent)
 
 void Songmodel::scanDirectory(const QString &path)
 {
-
+    QString localPath = QUrl(path).toLocalFile();
+    QFileInfo info(localPath);
+    if (info.isFile()) {
+        // 只处理这一首歌
+        qDebug() << "localpath";
+        TagLib::FileRef f(localPath.toStdString().c_str());
+        if(f.isNull()){
+            return;
+        }
+        TagLib::Tag *tag=f.tag();
+        Song song;
+        song.title=QString::fromStdString(tag->title().toCString(true));
+        song.actist=QString::fromStdString(tag->artist().toCString(true));
+        song.album=QString::fromStdString(tag->album().toCString(true));
+        song.filePath = localPath;
+        song.lyrics = getLyrics(song.filePath);
+        song.albumArtPath = getimage(song.filePath);
+        addsong(song);
+        return;
+    }
     QDir dir(path);
-    if(!dir.exists())qDebug()<<"faile";
+    if(!dir.exists()) qDebug() << "faile";
     QStringList filters;
     filters<<"*.mp3";
     QStringList files=dir .entryList(filters,QDir::Files|QDir::NoSymLinks,QDir::Name);
+
     foreach (QString file, files) {
         QString filepath=dir .absoluteFilePath(file);
         QString realFilePath = filepath;

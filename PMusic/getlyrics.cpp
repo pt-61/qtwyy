@@ -9,12 +9,12 @@ QString getLyrics(const QString &filePath){
         TagLib::ID3v2::Tag*id3v2=mpegFile.ID3v2Tag();
 
         TagLib::ID3v2::FrameList lyrs=id3v2->frameListMap()["USLT"];
-        if(lyrs.isEmpty())qDebug()<<"2";
+        if(lyrs.isEmpty())qDebug()<<"lyris is empty";
         if(!lyrs.isEmpty()){
             TagLib::ID3v2::UnsynchronizedLyricsFrame*lyricsFrame=dynamic_cast<TagLib::ID3v2::UnsynchronizedLyricsFrame*>(lyrs.front());
             if(lyricsFrame){
-                qDebug()<<filePath;
-                qDebug()<<"find uslt";
+               // qDebug()<<filePath;
+                //qDebug()<<"find uslt";
                 return lyricsFrame->text().toCString(true);
             }
         }

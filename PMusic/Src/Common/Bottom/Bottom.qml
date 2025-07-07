@@ -69,10 +69,12 @@ Rectangle {
                 if(isplay===true){
                 player.pause()
                 isplay=false
+                p.source="qrc:/back.png"
                 }
                 else{
                 player.play()
                 isplay=true
+                p.source="qrc:/stop2.png"
                 }
             }
         }

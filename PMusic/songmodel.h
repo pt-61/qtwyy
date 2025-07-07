@@ -55,7 +55,7 @@ public:
     };
 
     explicit Songmodel(QObject *parent = nullptr);
-    void scanDirectory(const QString &path);
+    Q_INVOKABLE void scanDirectory(const QString &path);
     void addsong(const Song &song);
 
 

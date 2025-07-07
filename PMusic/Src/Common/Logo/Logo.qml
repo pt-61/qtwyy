@@ -36,7 +36,7 @@ Rectangle {
             var title=songmodel1.getSongTitle(pindex)
             var actist=songmodel1.getSongActist(pindex)
             songmodel1.playmusic(filepath, lyrics, albumArt, pindex, listview.count,title,actist)
-            songmodel1.isplay()
+           // songmodel1.isplay()
         }
     }
 

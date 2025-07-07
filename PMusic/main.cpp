@@ -8,11 +8,12 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     Songmodel songmodel;
-    songmodel.scanDirectory(":/mp3/mp3.1");
+    //songmodel.scanDirectory(":/mp3/mp3.1");
 
     Songmodel songmodel1;
     songmodel1.scanDirectory(":/mp3/mp3.3");
     engine.rootContext()->setContextProperty("songmodel1",&songmodel1);
+    engine.rootContext()->setContextProperty("songmodel",&songmodel);
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,
