@@ -31,26 +31,9 @@ Rectangle {
         }
         Button{
             anchors.top: localplay.bottom
-            anchors.topMargin: 30
             text: "play all"
             onClicked: {
                 _fileOpen.open()
-            }
-        }
-        Rectangle{
-            height: 50
-            anchors.left: parent.left
-            width: parent.width
-            anchors.bottom: parent.bottom
-            Text {
-                id: localname
-                text: qsTr("title")
-                anchors.left: parent.left
-            }
-            Text {
-                anchors.left: localname.right
-                anchors.leftMargin: parent.width/2
-                text: qsTr("album")
             }
         }
     }
@@ -104,6 +87,7 @@ Rectangle {
             TapHandler{
                 onTapped: {
                 songmodel.playmusic(filepath,lyrics,albumArt,index,listview.count,title,actist)
+                console.log(modelname)
                 }
             }
         }
@@ -120,7 +104,7 @@ Rectangle {
             var title=songmodel.getSongTitle(pindex)
             var actist=songmodel.getSongActist(pindex)
             songmodel.playmusic(filepath, lyrics, albumArt, pindex, listview.count,title,actist)
-            //songmodel.isplay()
+            songmodel.isplay()
         }
     }
 
