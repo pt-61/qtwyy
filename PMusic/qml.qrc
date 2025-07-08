@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Src/Stack/Cherry/Cherry.qml</file>
+        <file>Src/Stack/Cherry/CherrySelector.qml</file>
+        <file>Src/Stack/Settings/Settings.qml</file>
+        <file>Src/Stack/Settings/SettingStack/Commons.qml</file>
+        <file>Src/Stack/Settings/SettingStack/Counter.qml</file>
+        <file>Src/Stack/Coming.qml</file>
+        <file>Src/Stack/LocalList/LocalList.qml</file>
+        <file>Src/Stack/Cherry/CherryStack/cherryOption/CherryOption.qml</file>
+        <file>Src/Stack/Cherry/CherryStack/Coming.qml</file>
+        <file>Src/Stack/Cherry/CherryStack/cherryOption/CherryCarousel.qml</file>
+        <file>Src/Stack/Cherry/CherryStack/cherryOption/LeftArrow.qml</file>
+        <file>Src/Stack/Cherry/CherryStack/cherryOption/RightArrow.qml</file>
+    </qresource>
+</RCC>
