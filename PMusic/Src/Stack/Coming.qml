@@ -1,12 +1,13 @@
 import QtQuick
 
-Item {
+Rectangle {
     Text {
         anchors.centerIn: parent
         text: "coming"
         font {
-            pixelSize: 50
+            pixelSize: 24
             family: "黑体"
+            bold: true
         }
     }
 }

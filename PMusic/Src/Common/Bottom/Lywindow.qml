@@ -10,7 +10,7 @@ Rectangle{
     height:window.height
     state: "min"
     color:"#1d1a23"
-
+    property bool isbig: false
     TapHandler {
         acceptedDevices: PointerDevice.AllDevices
         gesturePolicy: TapHandler.DragThreshold
@@ -32,6 +32,22 @@ Rectangle{
             title=Title
             actist=Actist
             modelname= songmodel1
+        }
+    }
+    Connections{
+        target: songmodel
+        function onPlaymusic(path,lyrics,alubmartpath,currentindex,listviewcount,Title,Actist){
+            parsedLyrics=parseUSLT(lyrics)
+            listviewIndex=currentindex
+            lyimage.source="file:///"+alubmartpath
+            musicpicture.source="file:///"+alubmartpath
+            count=listviewcount
+            player.source="file:///"+path
+            player.play()
+            isplay=true
+            title=Title
+            actist=Actist
+            modelname= songmodel
         }
     }
 
@@ -93,11 +109,13 @@ Rectangle{
                 if(isplay===true){
                     player.pause()
                     isplay=false
+                    pt.source="qrc:/lyimage/lypause.png"
 
                 }
                 else{
                     player.play()
                     isplay=true
+                    pt.source="qrc:/stop1.png"
                 }
             }
         }
@@ -121,7 +139,7 @@ Rectangle{
             onTapped: {
                 console.log("a:",listviewIndex)
                 var a=(listviewIndex-1+count)%count
-                songmodel1.findindex(a)
+                modelname.findindex(a)
             }
         }
         HoverHandler{
@@ -144,7 +162,7 @@ Rectangle{
             onTapped: {
                 console.log("b:",listviewIndex)
                 var b=(listviewIndex+1+count)%count
-                songmodel1.findindex(b)
+                modelname.findindex(b)
             }
         }
         HoverHandler{
@@ -193,13 +211,15 @@ Rectangle{
     }
 
     Rectangle{
-        anchors.right: parent.right
-        anchors.rightMargin: 100
-        anchors.bottom: lyvolumerc.top
         id:lyvolumesilder
-        height: 50
+        anchors.right: parent.right
+        anchors.rightMargin: 220
+        anchors.bottom: lyvolumerc.top
+        height: 100
         width: 20
         visible: false
+        z:1
+        color: parent.color
         Slider{
             anchors.fill: parent
             orientation: Qt.Vertical
@@ -212,10 +232,10 @@ Rectangle{
     Image {
         id: lyvolumerc
         anchors.right: parent.right
-        anchors.rightMargin: 100
+        anchors.rightMargin: 200
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
-        source: "qrc:/lyimage/lyclose.png"
+        source: "qrc:/lyimage/lysong.png"
             TapHandler{
                 onTapped: {
                     if(lyvolumesilder.visible===false){
@@ -231,7 +251,7 @@ Rectangle{
     RowLayout{
         anchors.top: pt.bottom
         anchors.left: parent.left
-        Layout.bottomMargin: 20
+        Layout.bottomMargin: 15
         width: parent.width
         Text {
             id:s
@@ -272,11 +292,40 @@ Rectangle{
         anchors.right: parent.right
         width: 100
         Image {
+            id:llyclose
             anchors.right: parent.right
             source: "qrc:/lyimage/lyclose.png"
             TapHandler{
                 onTapped: {
                     Qt.quit()
+                }
+            }
+        }
+
+        Image {
+            id: lybig
+            anchors.right: llyclose.left
+            anchors.rightMargin: 10
+            source: "qrc:/lyimage/lybig.png"
+            TapHandler{
+                onTapped: {
+                    if(!isbig){
+                        window.showMaximized()
+                        isbig=true
+                    }else{
+                        window.showNormal()
+                        isbig=false
+                    }
+                }
+            }
+        }
+        Image {
+            anchors.right: lybig.left
+            anchors.rightMargin: 10
+            source: "qrc:/lyimage/lymin.png"
+            TapHandler{
+                onTapped: {
+                    window.showMinimized()
                 }
             }
         }
@@ -289,7 +338,7 @@ Rectangle{
         anchors.topMargin: parent.height/10
         height: (parent.height-80)/3
         width: parent.width/2
-        color: "red"
+        color: parent.color
         Text {
             id:lyTitle
             text: qsTr(title)
@@ -300,6 +349,9 @@ Rectangle{
         Text {
             anchors.top: lyTitle.bottom
             text: qsTr(actist)
+            font.pixelSize: 15
+            font.family:"微软雅黑"
+            color: "#94a3b8"
         }
     }
 

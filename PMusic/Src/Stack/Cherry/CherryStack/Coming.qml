@@ -3,7 +3,7 @@ import QtQuick
 Rectangle {
     Text {
         anchors.centerIn: parent
-        text: "ListSquare"
+        text: "coming"
         font {
             pixelSize: 24
             family: "黑体"

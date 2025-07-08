@@ -14,7 +14,7 @@ Rectangle {
     //选中的索引
     property int selectedIndex: 0
     //鼠标触发时的区域位置
-    property int whichSpace: 1
+    property int whichSpace: 0
 
     Item {
         width: selectorsItem_Width

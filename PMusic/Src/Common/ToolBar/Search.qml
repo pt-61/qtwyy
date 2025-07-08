@@ -70,7 +70,6 @@ Row{
                         id:searchtotal
                         anchors.left: parent.left
                         anchors.right: parent.right
-                        //height: history.implicitHeight+singflow.implicitHeight+50
                         height: 150
                         Item {
                             id: history

@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import "./SettingStack"
+import "../StackPages/Settingitems"
 Item {
     Item {
         anchors.fill: parent
@@ -44,10 +44,30 @@ Item {
                         anchors.top:selectlabel.bottom
                         height: 3
                         anchors.topMargin: 3
-                        color: selectedrep.selectedindex===index?"#eb4d44":"white"
+                        color: "#eb4d44"
                     }
-                    TapHandler{
-                        onTapped: {
+                    MouseArea{
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onEntered: {
+                            if(selectedrep.selectedindex===index){
+                                selectlabel.color="white"
+                            }
+                            else{
+                                selectlabel.color="#b9b9ba"
+                            }
+                            cursorShape=Qt.ArrowCursor
+                        }
+                        onExited: {
+                            if(selectedrep.selectedindex===index){
+                                selectlabel.color="#a1a1a3"
+                            }
+                            else{
+                                selectlabel.color="white"
+                            }
+                            cursorShape=Qt.ArrowCursor
+                        }
+                        onClicked: {
                             selectedrep.selectedindex=index
                         }
                     }
@@ -69,7 +89,6 @@ Item {
                 width: 10
 
             }
-
             Column{
                 anchors.fill: parent
                 anchors.topMargin: 50
@@ -77,9 +96,9 @@ Item {
                 //账户
                 Counter{}
                 //常规
-                Commons{
-                    anchors.left: parent.left
-                    anchors.right: parent.right
+                Common{
+                    anchors.top: Counter.bottom
+                    anchors.topMargin: 50
                 }
             }
         }

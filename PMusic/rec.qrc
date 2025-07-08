@@ -28,7 +28,9 @@
         <file>lyimage/lydown.png</file>
         <file>lyimage/lyclose.png</file>
         <file>lyimage/lybig.png</file>
-        <file>Src/image/playImg_white.png</file>
+        <file>lyimage/lysong.png</file>
+        <file>lyimage/lypause.png</file>
+        <file>lyimage/bolistview.png</file>
     </qresource>
     <qresource prefix="/mp3">
         <file>mp3.1/Taylor Swift - Shake It Off.mp3</file>

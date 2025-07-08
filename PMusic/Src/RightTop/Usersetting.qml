@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-
 Row{
+
     Rectangle{
         height: 30
         width: 140
@@ -18,15 +18,15 @@ Row{
                 Image {
                     id:user
                     anchors.verticalCenter: parent.verticalCenter
-                    source: "qrc:/Src/image/name.png"
-                    HoverHandler{
-                        onHoveredChanged: {
-                            if(hovered){
-                                user.opacity=0.5
-                            }
-                            else{
-                                user.opacity=1
-                            }
+                    source: "/name.png"
+                    MouseArea{
+                        anchors.fill: parent
+                        hoverEnabled: true
+                        onEntered: {
+                           user.opacity=0.5
+                        }
+                        onExited: {
+                            user.opacity=1
                         }
                     }
                     Behavior on opacity {
@@ -36,13 +36,23 @@ Row{
                     }
                 }
             }
-            Text {
-                id: loadstart
-                font.pixelSize: 20
-                text: "未登录"
-                color: "#75777f"
-                anchors.verticalCenter: parent.verticalCenter
+        Text {
+            id: loadstart
+            font.pixelSize: 20
+            text: "未登录"
+            color: "#75777f"
+            anchors.verticalCenter: parent.verticalCenter
+            MouseArea{
+                anchors.fill: parent
+                hoverEnabled:true
+                onEntered: {
+
+                }
+                onClicked: {
+                    loginpopup.open()
+                }
             }
+           }
         }
     }
     Item{
@@ -76,56 +86,52 @@ Row{
         }
     }
 
-    Image {
-        id: record
-        source: "qrc:/Src/image/record.png"
-        HoverHandler{
-            onHoveredChanged: {
-                if(hovered){
-                    record.opacity=0.5
-                }
-                else{
-                    record.opacity=1
-                }
-            }
+Image {
+    id: record
+    source: "/record.png"
+    MouseArea{
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: {
+            record.opacity=0.5
         }
-        Behavior on opacity {
-            PropertyAnimation{
-                duration: 100
-            }
+        onExited: {
+            record.opacity=1
         }
     }
-    //设置
-    Image {
-        id: make
-        source: "qrc:/make1.png"
-        HoverHandler{
-            onHoveredChanged: {
-                if(hovered){
-                    make.opacity=0.5
-                }
-                else{
-                    make.opacity=1
-                }
-            }
-        }
-        TapHandler{
-            onTapped: {
-                mainStack.push("qrc:/Src/Stack/Settings/Settings.qml")
-            }
-        }
-
-
-        Behavior on opacity {
-            PropertyAnimation{
-                duration: 100
-            }
+    Behavior on opacity {
+        PropertyAnimation{
+            duration: 100
         }
     }
-    Rectangle{
-        width:1
-        height: 24
-        color: "#e2e5e9"
-        anchors.verticalCenter: parent.verticalCenter
+}
+//设置
+Image {
+    id: make
+    source: "/make.png"
+    MouseArea{
+        anchors.fill: parent
+        hoverEnabled: true
+        onEntered: {
+            make.opacity=0.5
+        }
+        onExited: {
+            make.opacity=1
+        }
+        onClicked: {
+            mainstack.push("qrc:/Src/Right/StackPages/Settings.qml")
+        }
     }
+    Behavior on opacity {
+        PropertyAnimation{
+            duration: 100
+        }
+    }
+}
+Rectangle{
+    width:1
+    height: 24
+    color: "#e2e5e9"
+    anchors.verticalCenter: parent.verticalCenter
+}
 }

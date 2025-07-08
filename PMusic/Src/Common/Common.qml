@@ -43,7 +43,7 @@ Rectangle {
     //标准标签颜色
     property color basicLabelColor: "gray"
 
-    //内容预设值
+    //
     property int horCount: 2
 
     Column {
@@ -107,7 +107,7 @@ Rectangle {
                 }
                 ListModel {
                     id: mainStackData
-                    ListElement {index: 0; space: 1}
+                    ListElement {index: 0; space: 0}
                 }
             }
         }
