@@ -99,7 +99,7 @@ Rectangle {
             onTapped: {
                 console.log("a:",listviewIndex)
                 var a=(listviewIndex-1+count)%count
-                modelname.findindex(a)
+                songmodel.findindex(a)
             }
         }
         HoverHandler{
@@ -123,7 +123,7 @@ Rectangle {
             onTapped: {
                 console.log("b:",listviewIndex)
                 var b=(listviewIndex+1+count)%count
-                modelname.findindex(b)
+                songmodel1.findindex(b)
             }
         }
         HoverHandler{
@@ -141,11 +141,10 @@ Rectangle {
         anchors.leftMargin: 15
         anchors.bottom: volumerc.top
         id:volumesilder
-        height: 100
+        height: 50
         width: 20
-        color: "#ffffff"
+        color: "#343439"
         visible: false
-        z:1
         Slider{
             anchors.fill: parent
             orientation: Qt.Vertical
@@ -174,7 +173,7 @@ Rectangle {
         }
     Image {
         id: listpaly
-        source: "qrc:/lyimage/bolistview.png"
+        source: "qrc:/lyimage/lylistview.png"
         anchors.right: parent.right
         anchors.rightMargin: 100
         TapHandler{
@@ -191,33 +190,17 @@ Rectangle {
         height: 200
         width: 100+listpaly.width
         background:Rectangle {
-            color: "#ffffff"
-            radius: 8
-            z:1
+            color: "red"
             ListView{
-                id:bolistview
                 model: modelname
                 anchors.fill: parent
                 delegate: Rectangle{
                     height: 50
                     width: 150
-                    color: index===listviewIndex?"#94a3b8":"#ffffff"
+                    color: index===listviewIndex?"red":"blue"
                     Text {
-                        id:popuptitle
                         anchors.left: parent.left
                         text: title
-                        font.family: "微软雅黑"
-                    }
-                    Text {
-                        anchors.left: popuptitle.right
-                        anchors.leftMargin: 20
-                        color: "black"
-                        text: actist
-                    }
-                    TapHandler{
-                        onTapped: {
-                            modelname.playmusic(filepath,lyrics,albumArt,index,bolistview.count,title,actist)
-                        }
                     }
                 }
             }

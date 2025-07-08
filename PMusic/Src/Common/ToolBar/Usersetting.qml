@@ -111,6 +111,7 @@ Row{
         }
         TapHandler{
             onTapped: {
+                leftSelectors.whichSpace = 0
                 mainStack.push("qrc:/Src/Stack/Settings/Settings.qml")
             }
         }

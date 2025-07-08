@@ -1,19 +1,8 @@
 import QtQuick
 import QtQuick.Controls
 
-Rectangle {
-    color: "green"
-
-    Text {
-        anchors.centerIn: parent
-        text: "CherrySelector"
-        font {
-            pixelSize: 24
-            family: "黑体"
-            bold: true
-        }
-    }
-
+Item {
+    property int selectedIndex
     //选项行布局
     Row {
         height: parent.height * 0.625
@@ -27,7 +16,6 @@ Rectangle {
             id: cherrySelectorRap
             anchors.fill: parent
             model: cherrySelectorModel
-            property int selectedIndex: 0
             Item {
                 width: cherryLabel.width + 10
                 height: parent.height
@@ -45,7 +33,7 @@ Rectangle {
                         family: "黑体"
                         bold: true
                     }
-                    color: cherrySelectorRap.selectedIndex === index ? "black" : basicLabelColor
+                    color: selectedIndex === index ? "black" : basicLabelColor
                 }
                 //选项指示器
                 Rectangle {
@@ -56,13 +44,13 @@ Rectangle {
                         horizontalCenter: cherryLabel.horizontalCenter
                     }
                     color: "red"
-                    visible: cherrySelectorRap.selectedIndex === index
+                    visible: selectedIndex === index
                 }
                 //鼠标事件
                 HoverHandler {
                     cursorShape: Qt.PointingHandCursor
                     onHoveredChanged: {
-                        if(hovered && cherrySelectorRap.selectedIndex !== index)
+                        if(hovered && selectedIndex !== index)
                             cherryLabel.opacity = 0.8
                         else
                             cherryLabel.opacity = 1
@@ -70,7 +58,7 @@ Rectangle {
                 }
                 TapHandler {
                     onTapped: {
-                        cherrySelectorRap.selectedIndex = index
+                        selectedIndex = index
                         cherryStack.push(URL)
                     }
                 }
@@ -80,7 +68,7 @@ Rectangle {
         ListModel {
             id: cherrySelectorModel
             ListElement {name: "精选"; URL: "qrc:/Src/Stack/Cherry/CherryStack/cherryOption/CherryOption.qml"}
-            ListElement {name: "coming"; URL: "qrc:/Src/Stack/Cherry/CherryStack/Coming.qml"}
+            ListElement {name: "歌单广场"; URL: "qrc:/Src/Stack/Cherry/CherryStack/ListSquare.qml"}
         }
     }
 

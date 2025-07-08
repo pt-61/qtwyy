@@ -69,7 +69,6 @@ Item {
                 width: 10
 
             }
-
             Column{
                 anchors.fill: parent
                 anchors.topMargin: 50
