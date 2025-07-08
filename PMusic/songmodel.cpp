@@ -21,6 +21,7 @@ void Songmodel::scanDirectory(const QString &path)
         if(f.isNull()){
             return;
         }
+        qDebug() << "localpath"<<localPath;
         TagLib::Tag *tag=f.tag();
         Song song;
         song.title=QString::fromStdString(tag->title().toCString(true));

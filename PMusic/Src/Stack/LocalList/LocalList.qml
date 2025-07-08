@@ -38,6 +38,7 @@ Rectangle {
         }
     }
     color: leftColor
+    property string modelname: "songmodel"
     ListView{
         id:listview
         clip: true
@@ -73,11 +74,7 @@ Rectangle {
                 id: albumname
                 text: album
             }
-            TapHandler{
-                onTapped: {
-                songmodel.playmusic(filepath,lyrics,albumArt,index,listview.count,title,actist)
-                }
-            }
+
             HoverHandler{
                 onHoveredChanged: {
                     if(hovered){
@@ -85,6 +82,12 @@ Rectangle {
                     }else{
                         localre.color="#f7f9fc"
                     }
+                }
+            }
+            TapHandler{
+                onTapped: {
+                songmodel.playmusic(filepath,lyrics,albumArt,index,listview.count,title,actist)
+                console.log(modelname)
                 }
             }
         }

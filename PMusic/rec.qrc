@@ -4,7 +4,6 @@
         <file>Src/image/close.png</file>
         <file>Src/image/hide.png</file>
         <file>Src/image/cs.png</file>
-        <file>Src/image/make.png</file>
         <file>Src/image/mini.png</file>
         <file>Src/image/name.png</file>
         <file>Src/image/onbig.png</file>
@@ -12,7 +11,6 @@
         <file>Src/image/rightArrow.png</file>
         <file>Src/image/search.png</file>
         <file>Src/image/sing.png</file>
-        <file>Src/image/spcan.png</file>
         <file>back.png</file>
         <file>down.png</file>
         <file>left.png</file>
@@ -22,6 +20,14 @@
         <file>delete.png</file>
         <file>stop1.png</file>
         <file>stop2.png</file>
+        <file>lyimage/pause.png</file>
+        <file>lyimage/lyright.png</file>
+        <file>lyimage/lymin.png</file>
+        <file>lyimage/lylistview.png</file>
+        <file>lyimage/lyleft.png</file>
+        <file>lyimage/lydown.png</file>
+        <file>lyimage/lyclose.png</file>
+        <file>lyimage/lybig.png</file>
     </qresource>
     <qresource prefix="/mp3">
         <file>mp3.1/Taylor Swift - Shake It Off.mp3</file>

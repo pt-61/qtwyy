@@ -17,11 +17,12 @@ Rectangle {
             Text{
                 text: title
             }
-        TapHandler{
-            onTapped: {
-                songmodel1.playmusic(filepath,lyrics,albumArt,index,listview.count,title,actist)
+            TapHandler{
+                onTapped: {
+                    songmodel1.playmusic(filepath,lyrics,albumArt,index,listview.count,title,actist)
+                    ListView.model
+                }
             }
-        }
         }
     }
 

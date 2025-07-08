@@ -31,6 +31,7 @@ Rectangle{
             isplay=true
             title=Title
             actist=Actist
+            modelname= songmodel1
         }
     }
 
@@ -72,6 +73,10 @@ Rectangle{
                 lywindow.state="min"
             }
         }
+        Image {
+            anchors.fill: parent
+            source: "qrc:/lyimage/lydown.png"
+        }
     }
 
 
@@ -88,6 +93,7 @@ Rectangle{
                 if(isplay===true){
                     player.pause()
                     isplay=false
+
                 }
                 else{
                     player.play()
@@ -107,7 +113,7 @@ Rectangle{
     }
     Image {
         id:lyleft
-        source: "qrc:/left.png"
+        source: "qrc:/lyimage/lyleft.png"
         anchors.verticalCenter: pt.verticalCenter
         anchors.right: pt.left
         anchors.rightMargin: 30
@@ -130,7 +136,7 @@ Rectangle{
     }
     Image {
         id:lyright
-        source: "qrc:/right.png"
+        source: "qrc:/lyimage/lyright.png"
         anchors.verticalCenter: pt.verticalCenter
         anchors.left: pt.right
         anchors.leftMargin: 30
@@ -209,7 +215,7 @@ Rectangle{
         anchors.rightMargin: 100
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 50
-        source: "qrc:/Src/image/close.png"
+        source: "qrc:/lyimage/lyclose.png"
             TapHandler{
                 onTapped: {
                     if(lyvolumesilder.visible===false){
@@ -267,7 +273,7 @@ Rectangle{
         width: 100
         Image {
             anchors.right: parent.right
-            source: "qrc:/Src/image/close.png"
+            source: "qrc:/lyimage/lyclose.png"
             TapHandler{
                 onTapped: {
                     Qt.quit()
@@ -312,12 +318,12 @@ Rectangle{
             width: lyricslistview. width
             height: 100
             color: index===currentNewIndex? "#7f7f7f" : "#1d1a23"
-                Text {
-            text: modelData.text
-            anchors.centerIn: parent
-            color:index=== currentNewIndex?"#ffffff":"#94a3b8"
-            font.bold: index===currentNewIndex
-                }
+            Text {
+                text: modelData.text
+                anchors.centerIn: parent
+                color:index=== currentNewIndex?"#ffffff":"#94a3b8"
+                font.bold: index===currentNewIndex
+            }
             }
             Behavior on contentY {
                 NumberAnimation{duration:300}

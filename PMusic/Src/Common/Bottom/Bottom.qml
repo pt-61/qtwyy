@@ -17,6 +17,7 @@ Rectangle {
     property int listviewIndex: 0
     property string title: ""
     property string actist: ""
+    property var modelname:[]
 
     Item{
         anchors.top: parent.top
@@ -69,7 +70,7 @@ Rectangle {
                 if(isplay===true){
                 player.pause()
                 isplay=false
-                p.source="qrc:/back.png"
+                p.source="qrc:/lyimage/pause.png"
                 }
                 else{
                 player.play()
@@ -157,7 +158,7 @@ Rectangle {
         id: volumerc
         anchors.verticalCenter: parent.verticalCenter
         anchors.right: parent.right
-        anchors.rightMargin: 100
+        anchors.rightMargin: 200
         source: "qrc:/song.png"
             TapHandler{
                 onTapped: {
@@ -170,6 +171,42 @@ Rectangle {
                 }
             }
         }
+    Image {
+        id: listpaly
+        source: "qrc:/lyimage/lylistview.png"
+        anchors.right: parent.right
+        anchors.rightMargin: 100
+        TapHandler{
+            onTapped: {
+                listpopup.x=listpaly.x
+                listpopup.y=listpaly.y-listpopup.height
+                listpopup.open()
+            }
+        }
+    }
+
+    Popup{
+        id:listpopup
+        height: 200
+        width: 100+listpaly.width
+        background:Rectangle {
+            color: "red"
+            ListView{
+                model: modelname
+                anchors.fill: parent
+                delegate: Rectangle{
+                    height: 50
+                    width: 150
+                    color: index===listviewIndex?"red":"blue"
+                    Text {
+                        anchors.left: parent.left
+                        text: title
+                    }
+                }
+            }
+        }
+    }
+
     RowLayout{
         width:parent.width
         id:playerrow 
