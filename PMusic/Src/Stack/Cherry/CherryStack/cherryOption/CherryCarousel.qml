@@ -1,31 +1,23 @@
 import QtQuick
 import Qt5Compat.GraphicalEffects
 
-Rectangle {
-    color: "red"
-
+Item {
     id: cherryCarousel
     width: parent.width
     height: carouselImg_Height + carouselIndicator.height + 10
-    anchors {
-        left: parent.left
-        right: parent.right
-    }
 
-    //单位宽度
-    property double unit_Width: 75
-    //图片宽度
-    property double carouselImg_Width: unit_Width * (common.horCount + 3)
-    //图片高度
-    property double carouselImg_Height: carouselImg_Width / 2.5
-    //图片间隔
-    property double carouselImg_Spacing: 20
     //轮播图区域宽度
-    property double carousel_Width: carouselImg_Width * common.horCount + carouselImg_Spacing * (common.horCount - 1)
+    property double carousel_Width
     //控制区域宽度
     property double carouselSapce_Width: carousel_Width + carouselLArrow.width + carouselRArrow.width
+    //宣传图间隔
+    property double carouselImg_Spacing: 20
+    //宣传图宽度
+    property double carouselImg_Width: (carousel_Width - carouselImg_Spacing * (common.horCount - 1)) / common.horCount
+    //宣传图高度
+    property double carouselImg_Height: carouselImg_Width / 2.5
 
-    //动画管理
+    //自动执行动画
     Timer {
         id: cherryTimer
         repeat: true
@@ -35,7 +27,7 @@ Rectangle {
             carouselLAnimation.start()
         }
     }
-    //向左移动
+    //向左移动动画
     ParallelAnimation {
         id: carouselLAnimation
         NumberAnimation {
@@ -56,7 +48,7 @@ Rectangle {
             duration: 500
         }
     }
-    //向右移动
+    //向右移动动画
     ParallelAnimation {
         id: carouselRAnimation
         NumberAnimation {
@@ -77,7 +69,6 @@ Rectangle {
             duration: 500
         }
     }
-
 
     //控制区域
     Item {
@@ -180,7 +171,7 @@ Rectangle {
                     Image {
                         id: carouselImg
                         anchors.fill: parent
-                        source: src
+                        source: img
                         visible: false
                     }
                     //圆角遮罩Rectangle
@@ -213,7 +204,7 @@ Rectangle {
                         anchors.centerIn: parent
                         color: "gray"
                         radius: 10
-                        opacity: 0.1
+                        opacity: 0.2
                         Behavior on opacity {
                             PropertyAnimation {
                                 duration: 200
@@ -227,12 +218,12 @@ Rectangle {
 
         ListModel {     //...
             id: carouselModel
-            ListElement {src: "qrc:/Src/image/blackImg.png"}
-            ListElement {src: "qrc:/Src/image/rightArrow.png"}
-            ListElement {src: "qrc:/Src/image/blackImg.png"}
-            ListElement {src: "qrc:/Src/image/rightArrow.png"}
-            ListElement {src: "qrc:/Src/image/blackImg.png"}
-            ListElement {src: "qrc:/Src/image/rightArrow.png"}
+            ListElement {img: "qrc:/Src/image/blackImg.png"}
+            ListElement {img: "qrc:/Src/image/blackImg.png"}
+            ListElement {img: "qrc:/Src/image/blackImg.png"}
+            ListElement {img: "qrc:/Src/image/blackImg.png"}
+            ListElement {img: "qrc:/Src/image/blackImg.png"}
+            ListElement {img: "qrc:/Src/image/blackImg.png"}
         }
 
         Path {

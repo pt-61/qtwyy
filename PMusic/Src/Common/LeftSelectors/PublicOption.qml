@@ -20,13 +20,12 @@ Item {
             anchors.fill: parent
             model: publicModel
             optionRepItem_Height: publicItem_Height
-            currentSpace: 0         //区域 0
+            currentSpace: 1         //区域 1
         }
 
         ListModel {
             id: publicModel
             ListElement {name: "精选"; URL: "qrc:/Src/Stack/Cherry/Cherry.qml"}
-            ListElement {name: "coming"; URL: "qrc:/Src/Stack/Coming.qml"}
         }
     }
 }

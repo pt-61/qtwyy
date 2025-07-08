@@ -20,13 +20,12 @@ Item {
             anchors.fill: parent
             model: personalModel
             optionRepItem_Height: personalItem_Height
-            currentSpace: 1         //区域 1
+            currentSpace: 2         //区域 2
         }
 
         ListModel {
             id: personalModel
             ListElement {name: "我的歌单"; URL: "qrc:/Src/Stack/LocalList/LocalList.qml"}
-            ListElement {name: "coming"; URL: "qrc:/Src/Stack/Coming.qml"}
         }
     }
 }
