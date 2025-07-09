@@ -63,8 +63,8 @@ Item {
                 }
                 TapHandler {
                     onTapped: {
-                        cherryStack.push("qrc:/Src/Stack/Cherry/CherryStack/ListSquare.qml")
-                        cherrySelector.selectedIndex = 1
+                        //cherryStack.push("qrc:/Src/Stack/Cherry/CherryStack/ListSquare.qml")
+                        //cherrySelector.selectedIndex = 1
                     }
                 }
             }
@@ -177,11 +177,9 @@ Item {
                         TapHandler {
                             onTapped: {
                                 mainStack.push(URL)
-                                //leftSelectors.selectedIndex = 0
-                                leftSelectors.whichSpace = 9
+                                leftSelectors.whichSpace = 0
                             }
                         }
-
                         //详情上移动画
                         ParallelAnimation {
                             id: cPlaylistItemUAnimation
@@ -218,7 +216,6 @@ Item {
                                 duration: 100
                             }
                         }
-
                         //宣传图组件
                         Item {
                             id: cPlayerListItem
@@ -316,10 +313,11 @@ Item {
                                                 width: cPlaylistTextLabel.width - cPlaylistTextNum_1.width
                                                 height: cPlaylistTextNum_1.height
                                                 Text {
-                                                    anchors.centerIn: parent
+                                                    anchors.verticalCenter: parent.verticalCenter
                                                     text: songName1
+                                                    color: "white"
                                                     font {
-                                                        pixelSize: 16
+                                                        pixelSize: 14
                                                         family: "黑体"
                                                     }
                                                 }
@@ -344,10 +342,11 @@ Item {
                                                 width: cPlaylistTextLabel.width - cPlaylistTextNum_2.width
                                                 height: cPlaylistTextNum_2.height
                                                 Text {
-                                                    anchors.centerIn: parent
+                                                    anchors.verticalCenter: parent.verticalCenter
                                                     text: songName2
+                                                    color: "white"
                                                     font {
-                                                        pixelSize: 16
+                                                        pixelSize: 14
                                                         family: "黑体"
                                                     }
                                                 }
@@ -372,10 +371,11 @@ Item {
                                                 width: cPlaylistTextLabel.width - cPlaylistTextNum_3.width
                                                 height: cPlaylistTextNum_3.height
                                                 Text {
-                                                    anchors.centerIn: parent
+                                                    anchors.verticalCenter: parent.verticalCenter
                                                     text: songName3
+                                                    color: "white"
                                                     font {
-                                                        pixelSize: 16
+                                                        pixelSize: 14
                                                         family: "黑体"
                                                     }
                                                 }
@@ -421,29 +421,52 @@ Item {
                         songName3: "占位"
                     }
                     ListElement {
-                        img: "qrc:/Src/image/blackImg.png"
-                        URL: "qrc:/Src/Stack/LocalList/LocalList.qml"
-                        listName: "我的歌单"
-                        songName1: ""
-                        songName2: ""
-                        songName3: ""
+                        img:"qrc:/Src/image/blackImg.png"
+                        URL: "qrc:/Src/Stack/TestList.qml"
+                        listName: "测试用歌单"
+                        songName1: "爱，很简单"
+                        songName2: "就是爱你"
+                        songName3: "今天你要嫁给我"
                     }
-
                     ListElement {
                         img:"qrc:/Src/image/blackImg.png"
-                        URL: "qrc:/Src/Stack/Coming.qml"
-                        listName: "coming"
-                        songName1: ""
-                        songName2: ""
-                        songName3: ""
+                        URL: "qrc:/Src/Stack/TestList.qml"
+                        listName: "测试用歌单"
+                        songName1: "爱，很简单"
+                        songName2: "就是爱你"
+                        songName3: "今天你要嫁给我"
                     }
                     ListElement {
-                        img: "qrc:/Src/image/blackImg.png"
-                        URL: ""
-                        listName: ""
-                        songName1: ""
-                        songName2: ""
-                        songName3: ""
+                        img:"qrc:/Src/image/blackImg.png"
+                        URL: "qrc:/Src/Stack/TestList.qml"
+                        listName: "测试用歌单"
+                        songName1: "爱，很简单"
+                        songName2: "就是爱你"
+                        songName3: "今天你要嫁给我"
+                    }
+                    ListElement {
+                        img:"qrc:/Src/image/blackImg.png"
+                        URL: "qrc:/Src/Stack/TestList.qml"
+                        listName: "测试用歌单"
+                        songName1: "爱，很简单"
+                        songName2: "就是爱你"
+                        songName3: "今天你要嫁给我"
+                    }
+                    ListElement {
+                        img:"qrc:/Src/image/blackImg.png"
+                        URL: "qrc:/Src/Stack/TestList.qml"
+                        listName: "测试用歌单"
+                        songName1: "爱，很简单"
+                        songName2: "就是爱你"
+                        songName3: "今天你要嫁给我"
+                    }
+                    ListElement {
+                        img:"qrc:/Src/image/blackImg.png"
+                        URL: "qrc:/Src/Stack/TestList.qml"
+                        listName: "测试用歌单"
+                        songName1: "爱，很简单"
+                        songName2: "就是爱你"
+                        songName3: "今天你要嫁给我"
                     }
                 }
 

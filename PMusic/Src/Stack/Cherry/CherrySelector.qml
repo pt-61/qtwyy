@@ -68,7 +68,7 @@ Item {
         ListModel {
             id: cherrySelectorModel
             ListElement {name: "精选"; URL: "qrc:/Src/Stack/Cherry/CherryStack/cherryOption/CherryOption.qml"}
-            ListElement {name: "歌单广场"; URL: "qrc:/Src/Stack/Cherry/CherryStack/ListSquare.qml"}
+            //ListElement {name: "歌单广场"; URL: "qrc:/Src/Stack/Cherry/CherryStack/ListSquare.qml"}
         }
     }
 

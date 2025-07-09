@@ -34,6 +34,7 @@
         <file>lyimage/lysong.png</file>
         <file>lyimage/icon.png</file>
         <file>lyimage/log.png</file>
+        <file>Src/image/logo.png</file>
     </qresource>
     <qresource prefix="/mp3">
         <file>mp3.1/Taylor Swift - Shake It Off.mp3</file>

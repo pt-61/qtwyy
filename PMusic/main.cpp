@@ -1,10 +1,13 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
-#include<QQmlContext>
-#include"songmodel.h"
+#include <QQmlContext>
+#include <QIcon>
+#include "songmodel.h"
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+
+    app.setWindowIcon(QIcon(":/Src/image/logo.png"));
 
     QQmlApplicationEngine engine;
     Songmodel songmodel;

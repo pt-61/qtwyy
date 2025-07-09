@@ -12,6 +12,6 @@
         <file>Src/Stack/Cherry/CherryStack/cherryOption/LeftArrow.qml</file>
         <file>Src/Stack/Cherry/CherryStack/cherryOption/RightArrow.qml</file>
         <file>Src/Stack/Cherry/CherryStack/cherryOption/CherryPlayerlist.qml</file>
-        <file>Src/Stack/Coming.qml</file>
+        <file>Src/Stack/TestList.qml</file>
     </qresource>
 </RCC>

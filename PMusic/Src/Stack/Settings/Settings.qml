@@ -35,7 +35,7 @@ Item {
                         font.pixelSize: 20
                         font.bold: true
                         anchors.centerIn: parent
-                        color: selectedrep.selectedindex===index?"white":"#a1a1a3"
+                        color: selectedrep.selectedindex===index?"black":"#a1a1a3"
                     }
                     Rectangle{
                         visible:selectedrep.selectedindex===index

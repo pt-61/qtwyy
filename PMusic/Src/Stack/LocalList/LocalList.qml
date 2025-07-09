@@ -7,7 +7,7 @@ import Qt.labs.platform
 Rectangle {
     FileDialog {
         id: _fileOpen
-        title: "选择音乐文件夹"
+        title: "选择本地音乐"
         fileMode: FileDialog.OpenFiles
         folder: StandardPaths.writableLocation(StandardPaths.DocumentsLocation)
         nameFilters: [ "Audio files (*.mp3 *.wav *.ogg)" ]
@@ -27,12 +27,12 @@ Rectangle {
             anchors.top: parent.top
             anchors.topMargin: 50
             id:localplay
-            text: qsTr("local play")
+            text: qsTr("本地音乐")
             font.pixelSize: 20
         }
         Button{
             anchors.top: localplay.bottom
-            text: "play all"
+            text: "手动导入本地音乐"
             onClicked: {
                 _fileOpen.open()
             }

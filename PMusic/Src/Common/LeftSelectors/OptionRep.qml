@@ -49,7 +49,7 @@ Repeater {
             cursorShape: Qt.PointingHandCursor
             onHoveredChanged: {
                 if(hovered)
-                    optionHighlightRec.visible = true
+                    optionHighlightRec.visible = selectedIndex !== index || whichSpace !== currentSpace
                 else
                     optionHighlightRec.visible = false
             }

@@ -1,10 +1,13 @@
 import QtQuick
 
 Rectangle {
-    color: leftColor
-    Image {
-        anchors.fill: parent
-        source: "qrc:/lyimage/log.png"
+    Text {
+        anchors.centerIn: parent
+        text: "PMusic"
+        font {
+            pixelSize: 24
+            family: "黑体"
+            bold: true
+        }
     }
-
 }

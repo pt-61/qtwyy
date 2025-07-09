@@ -19,7 +19,7 @@ Item {
             height: parent.height/4
             Text {
                 id: mname
-                text: qsTr("title")
+                text: qsTr("标题")
                 anchors.left: parent.left
                 anchors.leftMargin: 90
                 width: 50
@@ -27,7 +27,7 @@ Item {
             Text {
                 anchors.left:mname.right
                 anchors.leftMargin:70
-                text: qsTr("albumname")
+                text: qsTr("专辑")
             }
         }
     }

@@ -25,7 +25,7 @@ Item {
 
         ListModel {
             id: personalModel
-            ListElement {name: "localpaly"; URL: "qrc:/Src/Stack/LocalList/LocalList.qml"}
+            ListElement {name: "本地音乐"; URL: "qrc:/Src/Stack/LocalList/LocalList.qml"}
         }
     }
 }

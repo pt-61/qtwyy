@@ -13,7 +13,7 @@ Window {
     visible: true
     //界面边框处理
     flags: Qt.FramelessWindowHint|Qt.Window|Qt.WindowSystemMenuHint|Qt.WindowMaximizeButtonHint|Qt.WindowMinimizeButtonHint
-    title: qsTr("Demo Music Player")
+    title: qsTr("PMusic")
     property string fristpath:""
     property bool able: true
     Rectangle{

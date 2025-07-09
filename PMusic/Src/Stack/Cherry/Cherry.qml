@@ -3,7 +3,7 @@ import QtQuick.Controls
 
 Item {
     //限制宽度
-    property double limitedWidth: common.horCount === 2 ? parent.width - 80 : parent.width - 330
+    property double limitedWidth: common.horCount === 2 ? width - 80 : width - 330
     //抬头高度
     property double cherrySelector_Height: 40
     //堆栈高度
