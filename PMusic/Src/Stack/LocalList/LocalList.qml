@@ -16,6 +16,7 @@ Rectangle {
             songmodel.scanDirectory(folderPath);
         }
     }
+    property int currentindex: -1
     Rectangle{
         id:localtop
         height: parent.height/3
@@ -61,6 +62,7 @@ Rectangle {
                 anchors.left: indexname.right
                 id:titlename
                 text: title
+                color: currentindex===index?"red":"balck"
             }
             Text {
                 anchors.top: titlename.bottom
@@ -78,7 +80,7 @@ Rectangle {
             HoverHandler{
                 onHoveredChanged: {
                     if(hovered){
-                        localre.color="red"
+                        localre.color="#ffffff"
                     }else{
                         localre.color="#f7f9fc"
                     }
@@ -86,6 +88,7 @@ Rectangle {
             }
             TapHandler{
                 onTapped: {
+                currentindex=index
                 songmodel.playmusic(filepath,lyrics,albumArt,index,listview.count,title,actist)
                 console.log(modelname)
                 }
@@ -104,7 +107,7 @@ Rectangle {
             var title=songmodel.getSongTitle(pindex)
             var actist=songmodel.getSongActist(pindex)
             songmodel.playmusic(filepath, lyrics, albumArt, pindex, listview.count,title,actist)
-            songmodel.isplay()
+            //songmodel.isplay()
         }
     }
 

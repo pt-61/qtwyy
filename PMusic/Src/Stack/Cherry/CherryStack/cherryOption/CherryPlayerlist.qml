@@ -428,8 +428,9 @@ Item {
                         songName2: ""
                         songName3: ""
                     }
+
                     ListElement {
-                        img: "qrc:/Src/image/blackImg.png"
+                        img:"qrc:/Src/image/blackImg.png"
                         URL: "qrc:/Src/Stack/Coming.qml"
                         listName: "coming"
                         songName1: ""

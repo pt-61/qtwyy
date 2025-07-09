@@ -14,7 +14,7 @@ Window {
     //界面边框处理
     flags: Qt.FramelessWindowHint|Qt.Window|Qt.WindowSystemMenuHint|Qt.WindowMaximizeButtonHint|Qt.WindowMinimizeButtonHint
     title: qsTr("Demo Music Player")
-
+    property string fristpath:""
     property bool able: true
     Rectangle{
         anchors.top: parent.top
@@ -30,8 +30,8 @@ Window {
     Common {
         anchors.fill: parent
         enabled: able
-    }
 
+    }
 
 
 }

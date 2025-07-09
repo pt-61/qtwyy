@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=PMusic
+Path=/opt/PMusic/build/Desktop_Qt_6_9_1-Debug/
+Exec=/opt/PMusic/build/Desktop_Qt_6_9_1-Debug/PMusic
+Categories=Development
+Type=Application
+Icon=/opt/PMusic/make1.png
+StartupWMClass=PMusic
+Terminal=false
+ 

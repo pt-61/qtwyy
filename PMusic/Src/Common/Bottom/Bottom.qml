@@ -60,7 +60,7 @@ Rectangle {
 
     Image {
         id:p
-        source: "qrc:/stop2.png"
+        source: "qrc:/lyimage/pause.png"
         anchors.top: parent.top
         anchors.topMargin: 5
         anchors.left: parent.left
@@ -70,12 +70,12 @@ Rectangle {
                 if(isplay===true){
                 player.pause()
                 isplay=false
-                p.source="qrc:/lyimage/pause.png"
+                p.source="qrc:/stop2.png"
                 }
                 else{
                 player.play()
                 isplay=true
-                p.source="qrc:/stop2.png"
+                p.source="qrc:/lyimage/pause.png"
                 }
             }
         }
@@ -99,7 +99,7 @@ Rectangle {
             onTapped: {
                 console.log("a:",listviewIndex)
                 var a=(listviewIndex-1+count)%count
-                songmodel.findindex(a)
+                modelname.findindex(a)
             }
         }
         HoverHandler{
@@ -123,7 +123,7 @@ Rectangle {
             onTapped: {
                 console.log("b:",listviewIndex)
                 var b=(listviewIndex+1+count)%count
-                songmodel1.findindex(b)
+                modelname.findindex(b)
             }
         }
         HoverHandler{
@@ -141,10 +141,11 @@ Rectangle {
         anchors.leftMargin: 15
         anchors.bottom: volumerc.top
         id:volumesilder
-        height: 50
+        height: 100
         width: 20
-        color: "#343439"
+        color: "#ffffff"
         visible: false
+        z:1
         Slider{
             anchors.fill: parent
             orientation: Qt.Vertical
@@ -173,7 +174,7 @@ Rectangle {
         }
     Image {
         id: listpaly
-        source: "qrc:/lyimage/lylistview.png"
+        source: "qrc:/lyimage/bolistview.png"
         anchors.right: parent.right
         anchors.rightMargin: 100
         TapHandler{
@@ -187,20 +188,36 @@ Rectangle {
 
     Popup{
         id:listpopup
-        height: 200
-        width: 100+listpaly.width
+        height: 400
+        width: 150+listpaly.width
         background:Rectangle {
-            color: "red"
+            color: "grey"
+            radius: 8
+            z:1
             ListView{
+                id:bolistview
                 model: modelname
                 anchors.fill: parent
                 delegate: Rectangle{
-                    height: 50
-                    width: 150
-                    color: index===listviewIndex?"red":"blue"
+                    height: 100
+                    width: 200
+                    color: index===listviewIndex?"#94a3b8":"#ffffff"
                     Text {
+                        id:popuptitle
                         anchors.left: parent.left
                         text: title
+                        font.family: "微软雅黑"
+                    }
+                    Text {
+                        anchors.left: popuptitle.right
+                        anchors.leftMargin: 20
+                        color: "black"
+                        text: actist
+                    }
+                    TapHandler{
+                        onTapped: {
+                            modelname.playmusic(filepath,lyrics,albumArt,index,bolistview.count,title,actist)
+                        }
                     }
                 }
             }
@@ -209,7 +226,7 @@ Rectangle {
 
     RowLayout{
         width:parent.width
-        id:playerrow 
+        id:playerrow
         anchors.left: parent.left
         anchors.top: parent.top
         Text {
