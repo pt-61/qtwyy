@@ -72,6 +72,7 @@ protected:
 private:
     QList<Song>m_songs;
 signals:
+    void isplaymusic();
     void listviewname(QString modelname);
     void findindex(int index);
     void playmusic(QString path,QString lycrics ,QString alubmartpath,int index,int listviewcount,QString title,QString actist);

@@ -37,7 +37,7 @@ void Songmodel::scanDirectory(const QString &path)
     if(!dir.exists()) qDebug() << "faile";
     QStringList filters;
     filters<<"*.mp3";
-    QStringList files=dir .entryList(filters,QDir::Files|QDir::NoSymLinks,QDir::Name);
+    QStringList files=dir.entryList(filters,QDir::Files|QDir::NoSymLinks,QDir::Name);
 
     foreach (QString file, files) {
         QString filepath=dir .absoluteFilePath(file);

@@ -18,6 +18,9 @@ Rectangle {
     property string title: ""
     property string actist: ""
     property var modelname:[]
+    property string source1:""
+
+
 
     Item{
         anchors.top: parent.top
@@ -67,6 +70,7 @@ Rectangle {
         anchors.leftMargin: parent.width/2
         TapHandler{
             onTapped: {
+                modelname.isplaymusic()
                 if(isplay===true){
                 player.pause()
                 isplay=false

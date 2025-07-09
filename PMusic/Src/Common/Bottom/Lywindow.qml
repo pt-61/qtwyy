@@ -18,6 +18,7 @@ Rectangle{
 
     }
 
+
     Connections{
         target: songmodel1
         function onPlaymusic(path,lyrics,alubmartpath,currentindex,listviewcount,Title,Actist){
@@ -32,6 +33,14 @@ Rectangle{
             title=Title
             actist=Actist
             modelname= songmodel1
+        }
+        function onIsplaymusic(){
+            if(isplay===true){
+                pt.source="qrc:/stop1.png"
+            }
+            else{
+                pt.source="qrc:/lyimage/lypause.png"
+            }
         }
     }
     Connections{
@@ -49,6 +58,15 @@ Rectangle{
             actist=Actist
             modelname= songmodel
         }
+        function onIsplaymusic(){
+            if(isplay===true){
+                pt.source="qrc:/stop1.png"
+            }
+            else{
+                pt.source="qrc:/lyimage/lypause.png"
+            }
+        }
+
     }
 
 
@@ -61,6 +79,7 @@ Rectangle{
                 y:window.y
                 x:window.x
                 enabled:true
+
             }
         },
         State {
@@ -71,6 +90,7 @@ Rectangle{
                 width:0
                 height:0
                 enabled:false
+
             }
         }]
 
@@ -109,13 +129,14 @@ Rectangle{
                 if(isplay===true){
                     player.pause()
                     isplay=false
-                    pt.source= "qrc:/stop1.png"
-
+                    pt.source="qrc:/stop1.png"
+                   p.source="qrc:/stop2.png"
                 }
                 else{
                     player.play()
                     isplay=true
                     pt.source="qrc:/lyimage/lypause.png"
+                    p.source="qrc:/lyimage/pause.png"
                 }
             }
         }
